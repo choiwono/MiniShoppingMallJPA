@@ -15,8 +15,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private char status;
-    private int totalPrice;
+    private char status;    private int totalPrice;
 
     @Column(name="reg_date")
     private Date regDate;
