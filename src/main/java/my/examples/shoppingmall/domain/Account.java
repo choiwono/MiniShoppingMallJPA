@@ -40,9 +40,14 @@ public class Account {
     @OneToMany(mappedBy="account")
     private List<OrderProduct> orderProducts;
 
+
+    @OneToMany(mappedBy="account")
+    private List<Wish> wishList;
+
     public Account() {
         regDate = new Date();
         reviewList = new ArrayList<>();
+        wishList = new ArrayList<>();
         roles = new HashSet<>();
     }
 }

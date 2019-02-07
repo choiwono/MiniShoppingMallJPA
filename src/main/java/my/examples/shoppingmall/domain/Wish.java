@@ -7,31 +7,24 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="review")
+@Table(name="wish")
 @Getter
 @Setter
-public class Review {
+public class Wish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(length=50)
-    private String title;
-    @Lob
-    private String content;
-    private Double rating;
-    @Column(name="reg_date")
+    private long id;
     private Date regDate;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Account.class)
     @JoinColumn(name="account_id")
     private Account account;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name="product_id")
     private Product product;
 
-    public Review(){
-        rating = 0.0;
+    public Wish() {
         regDate = new Date();
     }
 }

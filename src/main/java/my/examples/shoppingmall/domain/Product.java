@@ -34,10 +34,14 @@ public class Product {
     @OneToMany(mappedBy="product")
     private List<Review> reviewList;
 
+    @OneToMany(mappedBy = "product")
+    private List<Wish> wishes;
+
     public Product() {
         regDate = new Date();
         reviewList = new ArrayList<>();
         imageList = new ArrayList<>();
+        wishes = new ArrayList<>();
         price = 0;
         amount = 0;
         rating = 0.0;
