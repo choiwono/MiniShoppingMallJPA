@@ -16,11 +16,8 @@ public class Account {
     private Long id;
     @Column(length=20)
     private String name;
-    @Column(length=255)
     private String email;
-    @Column(length=255)
     private String passwd;
-    @Column(length=255)
     private String address;
     @Column(length=50)
     private String phone;
@@ -34,20 +31,27 @@ public class Account {
     )
     private Set<Role> roles;
 
-    @OneToMany(mappedBy="account")
+    @OneToMany
+    @JoinColumn(name="account_id")
     private List<Review> reviewList;
 
-    @OneToMany(mappedBy="account")
+    @OneToMany
+    @JoinColumn(name="account_id")
     private List<OrderProduct> orderProducts;
 
-
-    @OneToMany(mappedBy="account")
+    @OneToMany
+    @JoinColumn(name="account_id")
     private List<Wish> wishList;
+
+    @OneToMany
+    @JoinColumn(name="account_id")
+    private List<PurchaseRecord> purchaseRecords;
 
     public Account() {
         regDate = new Date();
         reviewList = new ArrayList<>();
         wishList = new ArrayList<>();
         roles = new HashSet<>();
+        purchaseRecords = new ArrayList<>();
     }
 }

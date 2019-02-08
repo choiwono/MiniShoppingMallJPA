@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +23,13 @@ public class Order {
     @Column(name="reg_date")
     private Date regDate;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany
+    @JoinColumn(name="order_id")
     private List<OrderProduct> orderProductList;
 
     public Order() {
         regDate = new Date();
+        orderProductList = new ArrayList<>();
         status = 0;
         totalPrice = 0;
     }

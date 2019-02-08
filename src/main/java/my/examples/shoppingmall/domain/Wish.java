@@ -16,13 +16,13 @@ public class Wish {
     private long id;
     private Date regDate;
 
-    @ManyToOne(targetEntity = Account.class)
-    @JoinColumn(name="account_id")
-    private Account account;
+//    @ManyToOne(targetEntity = Account.class)
+//    @JoinColumn(name="account_id")
+//    private Account account;
 
-    @ManyToOne(targetEntity = Product.class)
-    @JoinColumn(name="product_id")
-    private Product product;
+//    @ManyToOne(targetEntity = Product.class)
+//    @JoinColumn(name="product_id")
+//    private Product product;
 
     public Wish() {
         regDate = new Date();

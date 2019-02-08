@@ -28,20 +28,33 @@ public class Product {
     @JoinColumn(name="category_id")
     private ProductCategory productCategory;
 
-    @OneToMany(mappedBy="product")
+    @OneToMany
+    @JoinColumn(name="product_id")
     private List<Image> imageList;
 
-    @OneToMany(mappedBy="product")
+    @OneToMany
+    @JoinColumn(name="product_id")
     private List<Review> reviewList;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany
+    @JoinColumn(name="product_id")
     private List<Wish> wishes;
+
+    @OneToMany
+    @JoinColumn(name="product_id")
+    private List<OrderProduct> orderProducts;
+
+    @OneToMany
+    @JoinColumn(name="product_id")
+    private List<PurchaseRecord> purchaseRecords;
 
     public Product() {
         regDate = new Date();
         reviewList = new ArrayList<>();
         imageList = new ArrayList<>();
         wishes = new ArrayList<>();
+        orderProducts = new ArrayList<>();
+        purchaseRecords = new ArrayList<>();
         price = 0;
         amount = 0;
         rating = 0.0;

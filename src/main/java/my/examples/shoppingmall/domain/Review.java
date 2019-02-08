@@ -22,13 +22,13 @@ public class Review {
     @Column(name="reg_date")
     private Date regDate;
 
-    @ManyToOne
-    @JoinColumn(name="account_id")
-    private Account account;
+//    @ManyToOne
+//    @JoinColumn(name="account_id")
+//    private Account account;
 
-    @ManyToOne
-    @JoinColumn(name="product_id")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name="product_id")
+//    private Product product;
 
     public Review(){
         rating = 0.0;
