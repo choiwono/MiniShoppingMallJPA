@@ -23,13 +23,13 @@ public class OrderProductRepositoryTest {
 
     }
 
-    @Test
-    public void findByOrderList(){
-        Pageable pageable = PageRequest.of(0,2);
-        Page<OrderProduct> all = orderProductRepository.findAllMyOrderList(2L,pageable);
-
-        for(OrderProduct list : all) {
-            System.out.println(list.getId()+","+list.getAmount()+","+list.getTotalPrice());
-        }
-    }
+//    @Test
+//    public void findByOrderList(){
+//        Pageable pageable = PageRequest.of(0,2);
+//        Page<OrderProduct> all = orderProductRepository.findAllMyOrderList(2L,pageable);
+//
+//        for(OrderProduct list : all) {
+//            System.out.println(list.getId()+","+list.getAmount()+","+list.getTotalPrice());
+//        }
+//    }
 }

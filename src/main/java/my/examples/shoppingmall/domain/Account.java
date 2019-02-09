@@ -20,9 +20,9 @@ public class Account {
     private String name;
     private String email;
     private String passwd;
-    private String address;
-    @Column(length=50)
-    private String phone;
+//    private String address;
+//    @Column(length=50)
+//    private String phone;
     @Column(name="reg_date")
     private Date regDate;
 
@@ -37,6 +37,9 @@ public class Account {
     @JoinColumn(name="account_id")
     private List<Review> reviewList;
 
+    @OneToMany
+    @JoinColumn(name="account_id")
+    private List<AccountRepository> accountRepositories;
 //    @OneToMany(mappedBy = "account")
 //    private List<OrderProduct> orderProducts;
 
@@ -54,5 +57,6 @@ public class Account {
         wishList = new ArrayList<>();
         roles = new HashSet<>();
         purchaseRecords = new ArrayList<>();
+        accountRepositories = new ArrayList<>();
     }
 }

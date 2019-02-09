@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name="product_category")
@@ -23,7 +22,16 @@ public class ProductCategory {
     @OneToMany(mappedBy = "productCategory")
     private List<Product> productList;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private ProductCategory groupCategory;
+
+    @OneToMany(mappedBy = "groupCategory")
+    private Set<ProductCategory> groupCategories;
+
     public ProductCategory() {
         regDate = new Date();
+        groupCategories = new HashSet<>();
+        productList = new ArrayList<>();
     }
 }

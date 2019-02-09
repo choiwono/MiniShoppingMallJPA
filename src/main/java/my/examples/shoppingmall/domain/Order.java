@@ -16,7 +16,29 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private char status;
+    @Column(name="order_status")
+    private String orderStatus;
+    @Column(name="user_auth")
+    private int userAuth;
+    @Column(name="user_name")
+    private String userName;
+    private Integer payment; // 결제수단
+    private String email1;
+    private String email2;
+    private String phone1; // 0106292
+    private String phone2; // 3620
+    @Column(name="receiver_name")
+    private String receiverName;
+    @Column(name="receiver_phone1")
+    private String receiverPhone1;
+    @Column(name="receiver_phone2")
+    private String receiverPhone2;
+    @Column(name="zip_code")
+    private int zipCode;
+    private String addr1;
+    private String addr2;
+    private String message;
+    @Column(name="total_price")
     private int totalPrice;
     @Column(name="order_No")
     private String orderNo;
@@ -30,7 +52,6 @@ public class Order {
     public Order() {
         regDate = new Date();
         orderProductList = new ArrayList<>();
-        status = 0;
         totalPrice = 0;
     }
 }
