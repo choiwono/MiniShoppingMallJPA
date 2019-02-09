@@ -2,6 +2,7 @@ package my.examples.shoppingmall.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,7 +21,6 @@ public class OrderProduct {
     private String name;
     @Column(name="reg_date")
     private Date regDate;
-
 //    @ManyToOne
 //    @JoinColumn(name = "proudct_id")
 //    private Product product;

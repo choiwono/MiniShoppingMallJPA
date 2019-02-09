@@ -1,7 +1,7 @@
 package my.examples.shoppingmall.repository;
 
-import my.examples.shoppingmall.domain.Account;
-import my.examples.shoppingmall.domain.OrderProduct;
+import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.domain.Review;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +12,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public class AccountRepositoryTest {
+public class ProductRepositoryTest {
     @Autowired
-    AccountRepository accountRepository;
-
-    @Autowired
-    OrderProductRepository orderProductRepository;
+    ProductRepository productRepository;
 
     @Test
     public void init() {
@@ -32,21 +27,21 @@ public class AccountRepositoryTest {
     }
 
     @Test
-    public void findAll() throws Exception {
-        List<Account> all = accountRepository.findAll();
-        for(Account list : all) {
+    public void findAllList(){
+        List<Product> all = productRepository.findAll();
+        for(Product list :all) {
             System.out.println(list.getName());
         }
     }
 
     @Test
-    public void findMyGrades() throws Exception {
-        Optional<Account> account = accountRepository.findById(1L);
-        System.out.println(account.get().getEmail());
-    }
-
-    @Test
-    public void findMyOrderList() throws Exception {
-
+    public void findByCategory(){
+        Pageable pageable = PageRequest.of(0,5);
+        Page<Product> all = productRepository.findProductByCategory(2L,pageable);
+        long totalElements = all.getTotalElements();
+        int totalPage = all.getTotalPages();
+        for(Product list:all) {
+            System.out.println(list.getName());
+        }
     }
 }

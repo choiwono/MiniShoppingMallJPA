@@ -2,6 +2,7 @@ package my.examples.shoppingmall.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.*;
@@ -10,6 +11,7 @@ import java.util.*;
 @Table(name="account")
 @Getter
 @Setter
+@ToString
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +37,8 @@ public class Account {
     @JoinColumn(name="account_id")
     private List<Review> reviewList;
 
-    @OneToMany
-    @JoinColumn(name="account_id")
-    private List<OrderProduct> orderProducts;
+//    @OneToMany(mappedBy = "account")
+//    private List<OrderProduct> orderProducts;
 
     @OneToMany
     @JoinColumn(name="account_id")
