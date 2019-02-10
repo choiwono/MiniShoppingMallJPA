@@ -20,7 +20,7 @@ public class ProductCategory {
     private Date regDate;
 
     @OneToMany(mappedBy = "productCategory")
-    private List<Product> productList;
+    private Set<Product> productList;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -32,6 +32,6 @@ public class ProductCategory {
     public ProductCategory() {
         regDate = new Date();
         groupCategories = new HashSet<>();
-        productList = new ArrayList<>();
+        productList = new HashSet<>();
     }
 }

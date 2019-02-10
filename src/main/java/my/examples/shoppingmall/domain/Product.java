@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name="product")
@@ -30,7 +28,7 @@ public class Product {
 
     @OneToMany
     @JoinColumn(name="product_id")
-    private List<Image> imageList;
+    private Set<Image> imageList;
 
     @OneToMany
     @JoinColumn(name="product_id")
@@ -51,7 +49,7 @@ public class Product {
     public Product() {
         regDate = new Date();
         reviewList = new ArrayList<>();
-        imageList = new ArrayList<>();
+        imageList = new HashSet<>();
         wishes = new ArrayList<>();
         orderProducts = new ArrayList<>();
         purchaseRecords = new ArrayList<>();
