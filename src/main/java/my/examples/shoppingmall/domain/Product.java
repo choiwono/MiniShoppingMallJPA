@@ -2,6 +2,7 @@ package my.examples.shoppingmall.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.*;
@@ -22,13 +23,13 @@ public class Product {
     private Date regDate;
     private Double rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id")
     private ProductCategory productCategory;
 
     @OneToMany
     @JoinColumn(name="product_id")
-    private Set<Image> imageList;
+    private Set<FileImage> fileImages;
 
     @OneToMany
     @JoinColumn(name="product_id")
@@ -49,7 +50,7 @@ public class Product {
     public Product() {
         regDate = new Date();
         reviewList = new ArrayList<>();
-        imageList = new HashSet<>();
+        fileImages = new HashSet<>();
         wishes = new ArrayList<>();
         orderProducts = new ArrayList<>();
         purchaseRecords = new ArrayList<>();

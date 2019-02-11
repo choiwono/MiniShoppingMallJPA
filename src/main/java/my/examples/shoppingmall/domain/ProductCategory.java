@@ -22,7 +22,7 @@ public class ProductCategory {
     @OneToMany(mappedBy = "productCategory")
     private Set<Product> productList;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private ProductCategory groupCategory;
 

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Table(name="account_repository")
 @Getter
 @Setter
-public class AccountRepository {
+public class AccountAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

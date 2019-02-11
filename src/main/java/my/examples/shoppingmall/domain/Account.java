@@ -18,6 +18,7 @@ public class Account {
     private Long id;
     @Column(length=20)
     private String name;
+    private String nickName;
     private String email;
     private String passwd;
 //    private String address;
@@ -39,7 +40,7 @@ public class Account {
 
     @OneToMany
     @JoinColumn(name="account_id")
-    private List<AccountRepository> accountRepositories;
+    private List<AccountAddress> accountAddresses;
 //    @OneToMany(mappedBy = "account")
 //    private List<OrderProduct> orderProducts;
 
@@ -57,6 +58,6 @@ public class Account {
         wishList = new ArrayList<>();
         roles = new HashSet<>();
         purchaseRecords = new ArrayList<>();
-        accountRepositories = new ArrayList<>();
+        accountAddresses = new ArrayList<>();
     }
 }

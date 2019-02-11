@@ -9,8 +9,8 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(name="image")
-public class Image {
+@Table(name="file_image")
+public class FileImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,7 +33,7 @@ public class Image {
 //    @JoinColumn(name="product_id")
 //    private Product product;
 
-    public Image() {
+    public FileImage() {
         regDate = new Date();
     }
 }
