@@ -29,9 +29,9 @@ public class FileImage {
     @Column(name="reg_date")
     private Date regDate;
 
-//    @ManyToOne
-//    @JoinColumn(name="product_id")
-//    private Product product;
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Product product;
 
     public FileImage() {
         regDate = new Date();

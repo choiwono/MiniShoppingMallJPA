@@ -18,12 +18,10 @@ public class Account {
     private Long id;
     @Column(length=20)
     private String name;
+    @Column(length=20, name="nick_name")
     private String nickName;
     private String email;
     private String passwd;
-//    private String address;
-//    @Column(length=50)
-//    private String phone;
     @Column(name="reg_date")
     private Date regDate;
 
@@ -41,8 +39,6 @@ public class Account {
     @OneToMany
     @JoinColumn(name="account_id")
     private List<AccountAddress> accountAddresses;
-//    @OneToMany(mappedBy = "account")
-//    private List<OrderProduct> orderProducts;
 
     @OneToMany
     @JoinColumn(name="account_id")
@@ -59,5 +55,11 @@ public class Account {
         roles = new HashSet<>();
         purchaseRecords = new ArrayList<>();
         accountAddresses = new ArrayList<>();
+    }
+
+    public void addRole(Role role){
+        if(roles == null)
+            roles = new HashSet<>();
+        roles.add(role);
     }
 }

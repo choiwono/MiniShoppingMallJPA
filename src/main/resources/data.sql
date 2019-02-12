@@ -4,11 +4,15 @@ values(1,'treasureb1220@gmail.com','최원오','choiwono1','{bcrypt}$2a$10$o3eFg
 insert into account (id,email,name,nick_name,passwd,reg_date)
 values(2,'treasureb1330@gmail.com','최원오','choiwono2','{bcrypt}$2a$10$o3eFgx5gkg0UPctYnvje7OMSTKhfZJ9H2.X/60UKxH382LeCIcHJ.',NOW());
 
-insert into roles (id,name,reg_date)
-values(1,'관리자',NOW());
+insert into account (id,email,name,nick_name,passwd,reg_date)
+values(3,'admin','최원오','choiwono2','{bcrypt}$2a$10$o3eFgx5gkg0UPctYnvje7OMSTKhfZJ9H2.X/60UKxH382LeCIcHJ.',NOW());
+
 
 insert into roles (id,name,reg_date)
-values(2,'일반회원',NOW());
+values(1,'ADMIN',NOW());
+
+insert into roles (id,name,reg_date)
+values(2,'USER',NOW());
 
 insert into account_roles (account_id,role_id)
 values(1,2);
@@ -16,24 +20,27 @@ values(1,2);
 insert into account_roles (account_id,role_id)
 values(2,2);
 
-insert into product_category (id,category_name,reg_date)
-values(1,'귀여운',NOW());
-insert into product_category (id,category_name,reg_date)
-values(2,'재밌는',NOW());
-insert into product_category (id,category_name,reg_date)
-values(3,'메시지',NOW());
-insert into product_category (id,category_name,reg_date)
-values(4,'일러스트',NOW());
-insert into product_category (id,category_name,reg_date)
-values(5,'카카오공식',NOW());
-insert into product_category (id,category_name,reg_date)
-values(6,'동물',NOW());
-insert into product_category (id,category_name,reg_date)
-values(7,'주제',NOW());
-insert into product_category (id,category_name,reg_date)
-values(8,'스타/방송',NOW());
-insert into product_category (id,category_name,reg_date)
-values(9,'만화/웹툰',NOW());
+insert into account_roles (account_id,role_id)
+values(3,1);
+
+insert into product_category (id,category_name,reg_date,ordering)
+values(1,'귀여운',NOW(),1);
+insert into product_category (id,category_name,reg_date,ordering)
+values(2,'재밌는',NOW(),2);
+insert into product_category (id,category_name,reg_date,ordering)
+values(3,'메시지',NOW(),3);
+insert into product_category (id,category_name,reg_date,ordering)
+values(4,'일러스트',NOW(),4);
+insert into product_category (id,category_name,reg_date,ordering)
+values(5,'카카오공식',NOW(),5);
+insert into product_category (id,category_name,reg_date,ordering)
+values(6,'동물',NOW(),6);
+insert into product_category (id,category_name,reg_date,ordering)
+values(7,'주제',NOW(),7);
+insert into product_category (id,category_name,reg_date,ordering)
+values(8,'스타/방송',NOW(),8);
+insert into product_category (id,category_name,reg_date,ordering)
+values(9,'만화/웹툰',NOW(),9);
 
 insert into product (id,amount,name,price,rating,reg_date,category_id)
 values(1,100,'귀여운이모티콘',2300,0.0,NOW(),1);

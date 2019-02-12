@@ -27,9 +27,9 @@ public class Product {
     @JoinColumn(name="category_id")
     private ProductCategory productCategory;
 
-    @OneToMany
-    @JoinColumn(name="product_id")
-    private Set<FileImage> fileImages;
+    @OneToMany(mappedBy = "product",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<FileImage> fileImages;
 
     @OneToMany
     @JoinColumn(name="product_id")
@@ -50,12 +50,19 @@ public class Product {
     public Product() {
         regDate = new Date();
         reviewList = new ArrayList<>();
-        fileImages = new HashSet<>();
+        fileImages = new ArrayList<>();
         wishes = new ArrayList<>();
         orderProducts = new ArrayList<>();
         purchaseRecords = new ArrayList<>();
         price = 0;
         amount = 0;
         rating = 0.0;
+    }
+
+    public void addFileImage(FileImage fileImage){
+        if(fileImages == null)
+            fileImages = new ArrayList<>();
+        fileImage.setProduct(this);
+        fileImages.add(fileImage);
     }
 }

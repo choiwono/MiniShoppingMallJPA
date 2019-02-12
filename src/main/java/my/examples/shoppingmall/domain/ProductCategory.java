@@ -18,6 +18,7 @@ public class ProductCategory {
     private String categoryName;
     @Column(name="reg_date")
     private Date regDate;
+    private int ordering;
 
     @OneToMany(mappedBy = "productCategory")
     private Set<Product> productList;
