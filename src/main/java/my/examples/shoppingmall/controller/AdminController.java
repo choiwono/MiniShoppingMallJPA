@@ -57,6 +57,7 @@ public class AdminController {
             for(MultipartFile image : images) {
                 FileImage fileImage = new FileImage();
                 fileImage.setLength(image.getSize());
+                fileImage.setOptions(1);
                 fileImage.setMimeType(image.getContentType());
                 fileImage.setFileName(image.getOriginalFilename());
                 String saveFileName = saveFile(image);

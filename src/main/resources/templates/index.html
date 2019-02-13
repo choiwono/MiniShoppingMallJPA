@@ -43,7 +43,7 @@
                   <a th:href="@{/product/view(id=${product.id})}" th:text="${product.name}"></a>
                 </h4>
                 <h5 th:text="${product.price}"></h5>
-                <a th:href="@{/product/addCart(id=${product.id})}">
+                <a th:onclick="'addCart('+${product.id}+');'">
                   <span><i class="fas fa-shopping-cart"></i></span>
                 </a>
               </div>

@@ -2,12 +2,12 @@ package my.examples.shoppingmall.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-
+import lombok.ToString;
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@ToString
 @Table(name="product")
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class Product {
     private Date regDate;
     private Double rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="category_id")
     private ProductCategory productCategory;
 

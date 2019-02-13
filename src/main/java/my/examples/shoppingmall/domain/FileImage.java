@@ -14,10 +14,9 @@ public class FileImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name="file_name")
     private String fileName;
-
+    private int options;
     @Column(name="save_file_name")
     private String saveFileName;
 
