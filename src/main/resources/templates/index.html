@@ -43,9 +43,9 @@
                   <a th:href="@{/product/view(id=${product.id})}" th:text="${product.name}"></a>
                 </h4>
                 <h5 th:text="${product.price}"></h5>
-                <button onclick="addCart()">
+                <a th:href="@{/product/addCart(id=${product.id})}">
                   <span><i class="fas fa-shopping-cart"></i></span>
-                </button>
+                </a>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
