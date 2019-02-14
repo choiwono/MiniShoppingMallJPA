@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -33,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll().and()
             .authorizeRequests() // 인가에 대한 설정
             .antMatchers("/").permitAll()
+            .antMatchers("/api/cart").permitAll()
             .antMatchers("/users/join").permitAll()
             .antMatchers("/users/welcome").permitAll()
             .antMatchers("/users/login").permitAll()

@@ -25,9 +25,6 @@ public class MainController {
     public String main(Model model){
 
         List<Product> products = productService.findAllProduct();
-        for(Product list : products){
-            System.out.println(list.toString());
-        }
         model.addAttribute("products",products);
         return "index";
     }
