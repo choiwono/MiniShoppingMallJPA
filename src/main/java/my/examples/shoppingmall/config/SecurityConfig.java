@@ -35,12 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests() // 인가에 대한 설정
             .antMatchers("/").permitAll()
             .antMatchers("/api/cart").permitAll()
+            .antMatchers("/cart/**").permitAll()
             .antMatchers("/users/join").permitAll()
             .antMatchers("/users/welcome").permitAll()
             .antMatchers("/users/login").permitAll()
             .antMatchers("/product/**").permitAll()
             .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
-            .antMatchers("/item/write").hasAnyRole("ADMIN")
+            //.antMatchers("/item/write").hasAnyRole("ADMIN")
             .antMatchers("/main").permitAll()
             .antMatchers("/admin/**").hasRole("ADMIN")
             .anyRequest().fullyAuthenticated()
@@ -50,6 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .loginPage("/users/login") // 사용자가 입력한 id, password가 전달되는 url경로(필터가처리)
             .usernameParameter("email")
             .passwordParameter("password")
-            .failureUrl("/users/login?fail=true");
+            .failureUrl("/users/login?fail=true").and().csrf().ignoringAntMatchers("/**");
     }
 }

@@ -1,7 +1,6 @@
 package my.examples.shoppingmall.controller.api;
 
 import my.examples.shoppingmall.dto.CartItem;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -17,21 +16,24 @@ public class CartApiController {
     public String addCart(@RequestBody CartItem cartItem,
                           Principal principal,
                           HttpSession session){
-        int result = 0;
-        if(principal == null){
-            if(session.getAttribute("cart") == null) {
-                Map<Long, Integer> cart = new HashMap<>();
-                cart.put(cartItem.getProductId(), 1);
-                session.setAttribute("cart",cart);
-                System.out.println(cartItem.toString());
-            } else {
-                Map<Long, Integer> cart = (Map)session.getAttribute("cart");
-                System.out.println(cartItem.toString());
-            }
+        String result = "fail";
+
+        if(session.getAttribute("cart") == null) {
+            Map<Long, Integer> cart = new HashMap<>();
+            cart.put(cartItem.getProductId(), cartItem.getQuantity());
+            session.setAttribute("cart",cart);
+            result = "success";
+
         } else {
-            result = 0;
+            Map<Long, Integer> cart = (Map)session.getAttribute("cart");
+            if(cart.containsKey(cartItem.getProductId())){
+                result = "duplicate";
+            } else {
+                cart.put(cartItem.getProductId(), cartItem.getQuantity());
+                session.setAttribute("cart",cart);
+                result = "success";
+            }
         }
-        System.out.println(cartItem.toString());
-        return "ok";
+        return result;
     }
 }

@@ -3,28 +3,23 @@
 <header th:fragment="headerFragment">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="/main">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/main">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
                     <li class="nav-item">
                         <div sec:authorize="isAuthenticated()">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                <a style="color:white;" th:href="@{/logout}" th:text="로그아웃"></a>
-                            </button>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    메뉴
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" th:href="@{/cart/list}" th:text="장바구니"></a>
+                                    <a class="dropdown-item" th:href="@{/logout}" th:text="로그아웃"></a>
+                                </div>
+                            </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -33,7 +28,27 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#joinModal">
                                 회원가입
                             </button>
+                            <a th:href="@{/cart/list}"><i class="fas fa-shopping-cart"></i></a>
                         </div>
+
+                        <div class="modal fade" id="layerPopup" tabindex="-1" role="dialog" aria-labelledby="layerPopupCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="layerPopupLongTitle">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3 th:text="장바구니"></h3>
+                                        <button type="button" th:onclick="'javascript:moveUrl('+'1'+')'" class="btn btn-primary">확인</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">취소</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -57,6 +72,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalModal" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
