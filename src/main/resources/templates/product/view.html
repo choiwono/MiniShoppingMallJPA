@@ -3,6 +3,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
 <th:block layout:fragment="css">
+<style>
+    .cursor-pointer {
+        cursor: pointer;
+    }
+</style>
 </th:block>
 <th:block layout:fragment="script">
 </th:block>
@@ -18,4 +23,33 @@
             </div>
         </div>
     </div>
+    <form type="post" action="/order/directorder">
+    <nav class="fixed-bottom navbar navbar-ligh bg-white">
+        <ul class="nav nav-pills nav-fill w-100">
+            <li class="align-content-start nav-item cursor-pointer p-2" role="button" th:onclick="'javascript:addCart(' + ${product.id} + ','+'1'+')'">
+                <a class="m-1">
+                    <span><i class="fas fa-shopping-cart"></i></span>
+                </a>
+                <span th:text="장바구니담기"></span>
+            </li>
+            <li class="align-content-between nav-item p-2">
+                <div class="input-group">
+                    <button type="button" class="input-group-prepend btn border">
+                        <span><i class="fas fa-minus"></i></span>
+                    </button>
+                    <input type="text" name="quantity" th:value="1" class="border text-center" style="width:75px;">
+                    <button type="button" class="input-group-append btn border">
+                        <span><i class="fas fa-plus"></i></span>
+                    </button>
+                </div>
+            </li>
+            <li class="align-content-center nav-item">
+                <a class="nav-link" th:href="@{/main}" th:text="쇼핑계속하기"></a>
+            </li>
+            <li class="align-content-end nav-item">
+                <a class="nav-link" th:href="@{/order/writeform}" th:text="구매하기">Link</a>
+            </li>
+        </ul>
+    </nav>
+    </form>
 </div>
