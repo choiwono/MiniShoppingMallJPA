@@ -25,14 +25,11 @@ public class Order {
     private Integer payment; // 결제수단
     private String email1;
     private String email2;
-    private String phone1; // 0106292
-    private String phone2; // 3620
+    private String phone;
     @Column(name="receiver_name")
     private String receiverName;
-    @Column(name="receiver_phone1")
-    private String receiverPhone1;
-    @Column(name="receiver_phone2")
-    private String receiverPhone2;
+    @Column(name="receiver_phone")
+    private String receiverPhone;
     @Column(name="zip_code")
     private int zipCode;
     private String addr1;

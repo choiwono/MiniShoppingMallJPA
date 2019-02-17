@@ -39,18 +39,16 @@
 
         <div class="row">
           <div th:each="product: ${products}" class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card h-100 border-0">
+              <a href="#"><img class="card-img-top rounded" src="http://placehold.it/200x250" alt=""></a>
               <div class="card-body">
-                <h4 class="card-title">
+                <p class="card-title">
                   <a th:href="@{/product/view(id=${product.id})}" th:text="${product.name}"></a>
-                </h4>
-                <h5 th:text="${product.price}"></h5>
-                <a th:onclick="'javascript:addCart(' + ${product.id} + ')'">
+                </p>
+                <p class="html-editor-bold" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></p>
+                <a th:onclick="'javascript:addCart(' + ${product.id} + ','+'1'+')'">
                   <span><i class="fas fa-shopping-cart"></i></span>
                 </a>
-              </div>
-              <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
               </div>
             </div>

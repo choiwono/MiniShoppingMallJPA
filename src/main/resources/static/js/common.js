@@ -1,8 +1,8 @@
-function addCart(id) {
+function addCart(id, quantity) {
 
     var JSONObject= {
         "productId" : id,
-        "quantity" : 1
+        "quantity" : quantity
     };
     var jsonData = JSON.stringify( JSONObject );
     $.ajax({
@@ -30,5 +30,13 @@ function addCart(id) {
 function moveUrl(url){
     if(url == 1) {
         document.location.href = "/cart/list";
+    }
+}
+
+function showModal(option){
+    if(option == 1) {
+        $('#exampleModal').modal('show')
+    } else if(option == 2) {
+        $('#joinModal').modal('show');
     }
 }
