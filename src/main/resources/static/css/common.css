@@ -1,15 +1,27 @@
 body {
     margin-top:20px;
 }
+
 header {
     height:56px;
 }
+
 .modal-backdrop{
     z-index:0;
 }
+
 .form-control {
     margin:15px 0px 15px 0px;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
 #popupDiv {  /* 팝업창 css */
     top : 0px;
     position: absolute;
