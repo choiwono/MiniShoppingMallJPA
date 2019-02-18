@@ -21,19 +21,20 @@
             <h3 th:text="${#strings.replace('상품 리스트', ' ', '&nbsp;')}"></h3>
             <div th:each="product: ${products}" th:if="${not #lists.isEmpty(products)}" class="col-lg-12">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item col-sm-12">
+                    <li class="list-group-item col-sm-12 border-bottom pt-5 pb-3">
                         <span class="col-sm-3"><img src="http://placehold.it/100x100"></span>
                         <span class="col-sm-3 font-weight-bold" th:text="${product.name}"></span>
+                        <span class="col-lg-3" id="amount" th:text="|수량 : ${product.amount}개|"></span>
                         <span class="col-sm-3" th:text="${product.name}"></span>
                         <span class="col-sm-3" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></span>
                         <div class="input-group justify-content-end">
-                            <button type="button" th:onclick="'javascript:amountModify(\''+'minus'+'\')'" class="input-group-prepend btn border">
+                            <button type="button" th:onclick="'javascript:amountModifys(\''+'minus'+'\')'" class="input-group-prepend btn border">
                                 <span><i class="fas fa-minus"></i></span>
                             </button>
                             <input type="hidden" name="id" th:value="${product.id}">
                             <input type="hidden" name="price" th:value="${product.price}">
                             <input type="text" name="amount" th:value="1" class="border text-center" style="width:75px;">
-                            <button type="button" th:onclick="'javascript:amountModify(\''+'plus'+'\')'" class="input-group-append btn border">
+                            <button type="button" th:onclick="'javascript:amountModifys(\''+'plus'+'\')'" class="input-group-append btn border">
                                 <span><i class="fas fa-plus"></i></span>
                             </button>
                             <button type="button" class="btn-light p-2 border" th:onclick="'javascript:changeProduct(' + ${product.id} + ')'" th:text="변경"></button>
@@ -41,9 +42,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="d-flex justify-content-end">
-                <h4 id="totalPrice" th:text="${totalPrice}? ${#numbers.formatInteger(totalPrice,3,'COMMA')} : '0'"></h4>
-            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <h4 id="totalPrice" th:text="${totalPrice}? ${#numbers.formatInteger(totalPrice,3,'COMMA')} : '0'"></h4>
         </div>
     </div>
     <hr class="my-4">
@@ -86,14 +87,14 @@
                             <input type="number" placeholder="휴대전화" class="form-control" name="receiverPhone">
                         </div>
                         <div class="form-group d-flex mb-0">
-                            <input type="number" placeholder="우편번호" class="form-control w-75" name="zipCode">
-                            <button type="button" class="form-control btn-light border w-25" th:text="우편번호"></button>
+                            <input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control w-75" name="zipCode">
+                            <button type="button" th:onclick="'javascript:openZipCode()'" class="form-control btn-light border w-25" th:text="우편번호"></button>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="addr1">
+                            <input type="text" id="sample4_roadAddress" class="form-control" name="addr1">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="addr2">
+                            <input type="text" id="sample4_detailAddress" class="form-control" name="addr2">
                         </div>
                     </div>
                 </div>
