@@ -26,7 +26,8 @@
                             <span class="col-lg-3 font-weight-bold" th:text="${product.name}"></span>
                             <span class="col-lg-3" th:id="'span-'+${product.id}" th:text="|수량 : ${product.amount}개|"></span>
                             <span class="col-lg-3" th:text="|가격 : ${#numbers.formatInteger(product.price,3,'COMMA')}원|"></span>
-                            <div class="input-group justify-content-end">
+                            <a href="#option" class="btn-light p-2 border" data-toggle="collapse" th:text="옵션+'/'+수량변경"></a>
+                            <div id="option" class="collapse input-group justify-content-end">
                                 <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
                                     <span><i class="fas fa-minus"></i></span>
                                 </button>
