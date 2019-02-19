@@ -24,17 +24,17 @@
                     <li class="list-group-item col-sm-12 border-bottom pt-5 pb-3">
                         <span class="col-sm-3"><img src="http://placehold.it/100x100"></span>
                         <span class="col-sm-3 font-weight-bold" th:text="${product.name}"></span>
-                        <span class="col-lg-3" id="amount" th:text="|수량 : ${product.amount}개|"></span>
+                        <span class="col-lg-3" th:text="|수량 : ${product.amount}개|"></span>
                         <span class="col-sm-3" th:text="${product.name}"></span>
                         <span class="col-sm-3" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></span>
                         <div class="input-group justify-content-end">
-                            <button type="button" th:onclick="'javascript:amountModifys(\''+'minus'+'\')'" class="input-group-prepend btn border">
+                            <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
                                 <span><i class="fas fa-minus"></i></span>
                             </button>
                             <input type="hidden" name="id" th:value="${product.id}">
-                            <input type="hidden" name="price" th:value="${product.price}">
-                            <input type="text" name="amount" th:value="1" class="border text-center" style="width:75px;">
-                            <button type="button" th:onclick="'javascript:amountModifys(\''+'plus'+'\')'" class="input-group-append btn border">
+                            <input type="hidden" name="price" th:data-price="${product.id}" th:value="${product.price}">
+                            <input type="text" name="amount" value="1" th:id="${product.id}" class="border text-center" style="width:75px;">
+                            <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'plus'+'\')'" class="input-group-append btn border">
                                 <span><i class="fas fa-plus"></i></span>
                             </button>
                             <button type="button" class="btn-light p-2 border" th:onclick="'javascript:changeProduct(' + ${product.id} + ')'" th:text="변경"></button>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <input id="name" placeholder="이름" class="form-control" type="text" name="userName">
+                            <input id="ordername" placeholder="이름" class="form-control" type="text" name="userName">
                         </div>
                         <div class="form-group">
                             <input id="email1" class="form-control" type="email" name="email1" th:placeholder="아이디">

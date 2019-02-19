@@ -24,16 +24,16 @@
                         <li class="list-group-item pr-0 pl-0 col-lg-12">
                             <span class="col-lg-3"><img src="http://placehold.it/100x100"></span>
                             <span class="col-lg-3 font-weight-bold" th:text="${product.name}"></span>
-                            <span class="col-lg-3" id="amount" th:text="|수량 : ${product.amount}개|"></span>
+                            <span class="col-lg-3" th:id="'span-'+${product.id}" th:text="|수량 : ${product.amount}개|"></span>
                             <span class="col-lg-3" th:text="|가격 : ${#numbers.formatInteger(product.price,3,'COMMA')}원|"></span>
                             <div class="input-group justify-content-end">
-                                <button type="button" th:onclick="'javascript:amountModify(\''+'minus'+'\')'" class="input-group-prepend btn border">
+                                <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
                                     <span><i class="fas fa-minus"></i></span>
                                 </button>
                                 <input type="hidden" name="id" th:value="${product.id}">
                                 <input type="hidden" name="price" th:value="${product.price}">
-                                <input type="text" name="amount" th:value="1" class="border text-center" style="width:75px;">
-                                <button type="button" th:onclick="'javascript:amountModify(\''+'plus'+'\')'" class="input-group-append btn border">
+                                <input type="text" th:value="${product.amount}" name="amount" th:id="${product.id}" class="border text-center" style="width:75px;">
+                                <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'plus'+'\')'" class="input-group-append btn border">
                                     <span><i class="fas fa-plus"></i></span>
                                 </button>
                                 <button type="button" class="btn-light p-2 border" th:onclick="'javascript:changeProduct(' + ${product.id} + ')'" th:text="변경"></button>

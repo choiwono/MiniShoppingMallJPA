@@ -29,12 +29,12 @@
             </li>
             <li class="align-content-between nav-item p-2">
                 <div class="input-group">
-                    <button type="button" th:onclick="'javascript:amountModify(\''+'minus'+'\')'" class="input-group-prepend btn border">
+                    <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
                         <span><i class="fas fa-minus"></i></span>
                     </button>
                     <input type="hidden" name="id" th:value="${product.id}">
-                    <input type="text" name="amount" th:value="1" class="border text-center" style="width:75px;">
-                    <button type="button" th:onclick="'javascript:amountModify(\''+'plus'+'\')'" class="input-group-append btn border">
+                    <input type="text" name="amount" value="1" th:id="${product.id}" th:data="${product.id}" class="border text-center" style="width:75px;">
+                    <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'plus'+'\')'" class="input-group-append btn border">
                         <span><i class="fas fa-plus"></i></span>
                     </button>
                 </div>

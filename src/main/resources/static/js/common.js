@@ -43,55 +43,34 @@ function showModal(option){
     }
 }
 
-function amountModify(option){
-    var amount = $("input[name='amount']").val();
+function amountModify(productId, option){
+    var amount = $('#'+productId).val();
+    var int = parseInt($('#'+productId).val());
+
     if(option == "plus"){
         if(amount == 10){
             alert("최대개수입니다");
             return;
         }
-        $("input[name='amount']").val(parseInt($("input[name='amount']").val())+1);
+        $('#'+productId).val(int+1);
     } else {
         if(amount == 1){
             alert("1개이상 담아주세요.");
             return;
         }
-        $("input[name='amount']").val(parseInt($("input[name='amount']").val())-1);
+        $('#'+productId).val(int-1);
     }
 }
 
-function amountModifys(){
-
-}
-
 function changeProduct(id){
-    var amount = $("input[name='amount']").val();
-    var price = $("input[name='price']").val();
-    var JSONObject= {
-        "productId" : id,
-        "quantity" : amount,
-        "price" : price
-    };
-    var jsonData = JSON.stringify( JSONObject );
-    $.ajax({
-        url : '/api/order/change',
-        method : 'post',
-        data : jsonData,
-        dataType: "text",
-        contentType: "application/json",
-        success : function (data) {
-            var str = JSON.parse(data);
-            //var productId = str.productId;
-            var amount = "수량 : ";
-            amount += str.quantity+"개";
-            var totalPrice = str.totalPrice;
-            $("#amount").html(amount);
-            $("#totalPrice").html(totalPrice);
-        },
-        error : function (data) {
-            alert("통신실패. 다시 시도해주시길 바랍니다.");
-        }
-    });
+
+    var totalPrice = 0;
+    var size = $("input[name='price']").length;
+    for(i=0; i<size; i++){
+        totalPrice += $("input[name='amount']").eq(i).prop("value") * $("input[name='price']").eq(i).prop("value");
+    }
+    $('#span-'+id).html();
+    $("#totalPrice").html(totalPrice);
 }
 
 function openZipCode() {
