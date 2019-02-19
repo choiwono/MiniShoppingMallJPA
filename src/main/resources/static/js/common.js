@@ -63,13 +63,13 @@ function amountModify(productId, option){
 }
 
 function changeProduct(id){
-
+    var amount = $('#'+id).val();
     var totalPrice = 0;
     var size = $("input[name='price']").length;
     for(i=0; i<size; i++){
         totalPrice += $("input[name='amount']").eq(i).prop("value") * $("input[name='price']").eq(i).prop("value");
     }
-    $('#span-'+id).html();
+    $('#span-'+id).html("수량 : "+amount+"개");
     $("#totalPrice").html(totalPrice);
 }
 
