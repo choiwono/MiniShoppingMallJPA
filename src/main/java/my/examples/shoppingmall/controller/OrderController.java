@@ -3,6 +3,7 @@ package my.examples.shoppingmall.controller;
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.service.OrderProductService;
 import my.examples.shoppingmall.service.OrderService;
 import my.examples.shoppingmall.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import java.util.Map;
 public class OrderController {
     private final OrderService orderService;
     private final ProductService productService;
+    private final OrderProductService orderProductService;
 
     @GetMapping("/writeform")
     public String orderWrite(Principal principal,
@@ -54,8 +56,8 @@ public class OrderController {
         }
 
         List<Product> products = productService.findMyProductList(orderProduct);
-
         orderService.saveOrder(order);
+        orderProductService.saveOrderProducts(products);
         return "order/complete";
     }
 
