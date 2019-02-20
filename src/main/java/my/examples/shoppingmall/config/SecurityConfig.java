@@ -35,8 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests() // 인가에 대한 설정
             .antMatchers("/").permitAll()
             .antMatchers("/api/cart").permitAll()
+            .antMatchers("/api/cart/change").permitAll()
             .antMatchers("/api/order").permitAll()
             .antMatchers("/api/order/change").permitAll()
+            .antMatchers("/order/buy").permitAll()
             .antMatchers("/order/writeform").permitAll()
             .antMatchers("/order/directorder").permitAll()
             .antMatchers("/cart/**").permitAll()

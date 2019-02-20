@@ -17,18 +17,36 @@
             <h3 th:text="${#strings.replace('상품 리스트', ' ', '&nbsp;')}"></h3>
             <div th:each="product: ${products}" th:if="${not #lists.isEmpty(products)}" class="col-lg-12">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item col-sm-12">
-                        <span class="col-sm-4"><img src="http://placehold.it/100x100"></span>
-                        <span class="col-sm-4" th:text="${product.name}"></span>
-                        <span class="col-sm-4" th:text="${product.price}"></span>
+                    <li class="list-group-item col-sm-12 border-bottom pt-5 pb-3">
+                        <span class="col-sm-3"><img src="http://placehold.it/100x100"></span>
+                        <span class="col-sm-3 font-weight-bold" th:text="${product.name}"></span>
+                        <span class="col-lg-3" th:id="'span-'+${product.id}" th:text="|수량 : ${product.amount}개|"></span>
+                        <span class="col-sm-3" th:text="${product.name}"></span>
+                        <span class="col-sm-3" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></span>
+                        <a th:href="'#option'+${product.id}" class="btn-light p-2 border" data-toggle="collapse" th:text="옵션+'/'+수량변경"></a>
+                        <div th:id="'option'+${product.id}" class="collapse input-group justify-content-end">
+                            <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
+                                <span><i class="fas fa-minus"></i></span>
+                            </button>
+                            <input type="hidden" name="id" th:value="${product.id}">
+                            <input type="hidden" name="price" th:data-price="${product.id}" th:value="${product.price}">
+                            <input type="text" name="amount" th:value="${product.amount}" th:id="${product.id}" class="border text-center" style="width:75px;">
+                            <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'plus'+'\')'" class="input-group-append btn border">
+                                <span><i class="fas fa-plus"></i></span>
+                            </button>
+                            <button type="button" class="btn-light p-2 border" th:onclick="'javascript:changeProductCart(' + ${product.id} + ')'" th:text="변경"></button>
+                        </div>
                     </li>
                 </ul>
+            </div>
+            <div class="d-flex justify-content-end w-100 p-3">
+                <h4 id="totalPrice" th:text="${totalPrice}? ${#numbers.formatInteger(totalPrice,3,'COMMA')} : '0'"></h4>
             </div>
             <div th:if="${#lists.isEmpty(products)}">
                 <h3 th:text="장바구니목록이비었습니다"></h3>
             </div>
         </div>
-        <nav class="fixed-bottom navbar navbar-ligh justify-content-end" style="background-color: #e3f2fd;">
+        <nav class="fixed-bottom navbar navbar-ligh justify-content-end" style="background-color: #fff;">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/main}" th:text="쇼핑계속하기"></a>
