@@ -1,18 +1,17 @@
 package my.examples.shoppingmall.controller;
 
 import lombok.RequiredArgsConstructor;
+import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.Product;
 import my.examples.shoppingmall.service.OrderService;
 import my.examples.shoppingmall.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +35,28 @@ public class OrderController {
             model.addAttribute("totalPrice",totalPrice);
         }
         return "order/writeform";
+    }
+
+    @PostMapping("/buy")
+    public String productBuy(@ModelAttribute Order order,
+                             @RequestParam(name="id") Long[] ids,
+                             @RequestParam(name="amount") int[] amounts,
+                                     Principal principal,
+                                 HttpSession httpSession){
+
+        String orderNumber = orderService.generateOrderNumber();
+        order.setOrderNo(orderNumber);
+
+        Map<Long,Integer> orderProduct = new HashMap<>();
+
+        for(int i=0; i<ids.length; i++){
+            orderProduct.put(ids[i],amounts[i]);
+        }
+
+        List<Product> products = productService.findMyProductList(orderProduct);
+
+        orderService.saveOrder(order);
+        return "order/complete";
     }
 
     @PostMapping("/directorder")

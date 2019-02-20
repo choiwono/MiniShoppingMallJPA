@@ -22,19 +22,20 @@
             <div th:each="product: ${products}" th:if="${not #lists.isEmpty(products)}" class="col-lg-12">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item col-sm-12 border-bottom pt-5 pb-3">
-                        <span class="col-sm-3"><img src="http://placehold.it/100x100"></span>
-                        <span class="col-sm-3 font-weight-bold" th:text="${product.name}"></span>
-                        <span class="col-lg-3" th:id="'span-'+${product.id}" th:text="|수량 : ${product.amount}개|"></span>
-                        <span class="col-sm-3" th:text="${product.name}"></span>
-                        <span class="col-sm-3" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></span>
-                        <a href="#option" class="btn-light p-2 border" data-toggle="collapse" th:text="옵션+'/'+수량변경"></a>
-                        <div id="option" class="collapse input-group justify-content-end">
+                        <span class="col-sm-2"><img src="http://placehold.it/100x100"></span>
+                        <span class="col-sm-2 font-weight-bold" th:text="${product.name}"></span>
+                        <span class="col-sm-2" th:id="'span-'+${product.id}" th:text="|수량 : ${product.amount}개|"></span>
+                        <span class="col-sm-2" th:text="${product.name}"></span>
+                        <span class="col-sm-2" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></span>
+                        <a th:href="'#option'+${product.id}" class="col-sm-2 btn-light p-2 border" data-toggle="collapse" th:text="옵션+'/'+수량변경"></a>
+                        <div th:id="'option'+${product.id}" class="collapse input-group justify-content-end">
                             <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
                                 <span><i class="fas fa-minus"></i></span>
                             </button>
                             <input type="hidden" name="id" th:value="${product.id}">
                             <input type="hidden" name="price" th:data-price="${product.id}" th:value="${product.price}">
-                            <input type="text" name="amount" value="1" th:id="${product.id}" class="border text-center" style="width:75px;">
+                            <input type="hidden" name="totalPrice" th:value="${totalPrice}">
+                            <input type="text" name="amount" th:value="${product.amount}" th:id="${product.id}" class="border text-center" style="width:75px;">
                             <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'plus'+'\')'" class="input-group-append btn border">
                                 <span><i class="fas fa-plus"></i></span>
                             </button>
@@ -44,7 +45,7 @@
                 </ul>
             </div>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end pt-2">
             <h4 id="totalPrice" th:text="${totalPrice}? ${#numbers.formatInteger(totalPrice,3,'COMMA')} : '0'"></h4>
         </div>
     </div>
@@ -60,12 +61,13 @@
                         <div class="form-group">
                             <input id="ordername" placeholder="이름" class="form-control" type="text" name="userName">
                         </div>
-                        <div class="form-group">
-                            <input id="email1" class="form-control" type="email" name="email1" th:placeholder="아이디">
-                            <input id="email2" class="form-control" type="email" name="email2" th:placeholder="직접입력">
+                        <div class="d-flex form-group">
+                            <input id="email1" class="form-control" type="text" name="email1" placeholder="아이디(이메일) 입력">
+                            <span class="ml-2 mr-2 pt-3 pb-3">@</span>
+                            <input id="email2" class="form-control" type="text" name="email2" placeholder="직접입력">
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" name="phone">
+                            <input type="text" class="form-control" name="phone" placeholder="휴대전화번호를 -없이 입력해주세요">
                         </div>
                         <input
                                 type="hidden"
@@ -85,7 +87,7 @@
                             <input id="receiverName" placeholder="이름" class="form-control" type="text" name="receiverName">
                         </div>
                         <div class="form-group">
-                            <input type="number" placeholder="휴대전화" class="form-control" name="receiverPhone">
+                            <input type="number" placeholder="휴대전화번호를 -없이 입력해주세요" class="form-control" name="receiverPhone">
                         </div>
                         <div class="form-group d-flex mb-0">
                             <input type="text" id="sample4_postcode" placeholder="우편번호" class="form-control w-75" name="zipCode">
@@ -100,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" class="form-control" value="등 록">
+            <input type="submit" class="m-3 form-control" value="등 록">
         </div>
     </div>
     </form>

@@ -36,4 +36,17 @@ public class CartApiController {
         }
         return result;
     }
+
+    @PostMapping("/change")
+    public String changeCart(@RequestBody CartItem cartItem,
+                             HttpSession session){
+        String result = "fail";
+        Map<Long, Integer> cart = (Map)session.getAttribute("cart");
+        if(cart.containsKey(cartItem.getProductId())){
+            cart.put(cartItem.getProductId(), cartItem.getQuantity());
+            session.setAttribute("cart",cart);
+            result = "success";
+        }
+        return result;
+    }
 }

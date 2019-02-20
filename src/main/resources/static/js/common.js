@@ -1,8 +1,11 @@
-function addCart(id, quantity) {
-
+function addCart(id) {
+    var amount = $('#'+id).val();
+    if(amount == null || 0){
+        amount = 1;
+    }
     var JSONObject= {
         "productId" : id,
-        "quantity" : quantity
+        "quantity" : amount
     };
     var jsonData = JSON.stringify( JSONObject );
     $.ajax({
@@ -43,22 +46,22 @@ function showModal(option){
     }
 }
 
-function amountModify(productId, option){
-    var amount = $('#'+productId).val();
-    var int = parseInt($('#'+productId).val());
+function amountModify(id, option){
+    var amount = $('#'+id).val();
+    var int = parseInt($('#'+id).val());
 
     if(option == "plus"){
         if(amount == 10){
             alert("최대개수입니다");
             return;
         }
-        $('#'+productId).val(int+1);
+        $('#'+id).val(int+1);
     } else {
         if(amount == 1){
             alert("1개이상 담아주세요.");
             return;
         }
-        $('#'+productId).val(int-1);
+        $('#'+id).val(int-1);
     }
 }
 
@@ -71,6 +74,31 @@ function changeProduct(id){
     }
     $('#span-'+id).html("수량 : "+amount+"개");
     $("#totalPrice").html(totalPrice);
+}
+
+function changeProductCart(id){
+    var amount = $('#'+id).val();
+    var JSONObject= {
+        "productId" : id,
+        "quantity" : amount
+    };
+    var jsonData = JSON.stringify( JSONObject );
+    $.ajax({
+        url : '/api/cart/change',
+        method : 'POST',
+        data : jsonData,
+        dataType: "text",
+        contentType: "application/json",
+        success : function (data) {
+            if(data == "success"){
+                alert("수량값이 변경되었습니다.");
+                changeProduct(id);
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        }
+    });
 }
 
 function openZipCode() {

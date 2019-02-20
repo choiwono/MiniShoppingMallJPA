@@ -29,7 +29,10 @@ public class CartController {
         } else {
             Map<Long, Integer> cart = (Map) session.getAttribute("cart");
             List<Product> products = productService.findMyProductList(cart);
+            int totalPrice = productService.findTotalPrice(products);
+
             model.addAttribute("products", products);
+            model.addAttribute("totalPrice", totalPrice);
         }
         return "cart/list";
     }
