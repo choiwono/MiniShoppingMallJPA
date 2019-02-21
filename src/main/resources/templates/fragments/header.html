@@ -18,6 +18,7 @@
                                 <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:onclick="'javascript:showModal('+'1'+')'" th:text="로그인"></a>
                                 <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:onclick="'javascript:showModal('+'2'+')'" th:text="회원가입"></a>
                                 <a class="dropdown-item" th:href="@{/cart/list}" th:text="장바구니"></a>
+                                <a class="dropdown-item" th:href="@{/order/record}" th:text="주문내역확인"></a>
                                 <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}" th:text="로그아웃"></a>
                             </div>
                         </div>

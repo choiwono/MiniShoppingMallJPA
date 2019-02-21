@@ -45,11 +45,16 @@ public class OrderController {
                              @RequestParam(name="amount") int[] amounts,
                                      Principal principal,
                                      Model model,
-                                 HttpSession httpSession){
+                                 HttpSession session){
+        if(principal != null){
+            order.setUserAuth(1);
+        } else {
+            order.setUserAuth(0);
+        }
 
+        order.setOrderStatus("0");
         String orderNumber = orderService.generateOrderNumber();
         order.setOrderNo(orderNumber);
-
         Map<Long,Integer> orderProduct = new HashMap<>();
 
         for(int i=0; i<ids.length; i++){
@@ -59,9 +64,15 @@ public class OrderController {
         List<Product> products = productService.findMyProductList(orderProduct);
         Order saveOrder = orderService.saveOrder(order);
         orderProductService.saveOrderProducts(products,saveOrder);
-
         model.addAttribute("orderNo",orderNumber);
+        model.addAttribute("products",products);
+        session.removeAttribute("cart");
         return "order/complete";
+    }
+
+    @GetMapping("/record")
+    public String orderRecord(){
+        return "order/record";
     }
 
     @PostMapping("/directorder")
