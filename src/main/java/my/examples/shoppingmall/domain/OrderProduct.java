@@ -21,13 +21,14 @@ public class OrderProduct {
     private String name;
     @Column(name="reg_date")
     private Date regDate;
-//    @ManyToOne
-//    @JoinColumn(name = "proudct_id")
-//    private Product product;
 
-//    @ManyToOne
-//    @JoinColumn(name = "order_id")
-//    private Order order;
+    @ManyToOne
+    @JoinColumn(name = "proudct_id")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 //    @ManyToOne
 //    @JoinColumn(name = "account_id")
