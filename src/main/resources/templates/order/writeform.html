@@ -32,7 +32,7 @@
                             <button type="button" th:onclick="'javascript:amountModify(' + ${product.id} + ',\''+'minus'+'\')'" class="input-group-prepend btn border">
                                 <span><i class="fas fa-minus"></i></span>
                             </button>
-                            <input type="hidden" name="id" th:value="${product.id}">
+                            <input type="hidden" name="productId" th:value="${product.id}">
                             <input type="hidden" name="price" th:data-price="${product.id}" th:value="${product.price}">
                             <input type="hidden" name="totalPrice" th:value="${totalPrice}">
                             <input type="text" name="amount" th:value="${product.amount}" th:id="${product.id}" class="border text-center" style="width:75px;">

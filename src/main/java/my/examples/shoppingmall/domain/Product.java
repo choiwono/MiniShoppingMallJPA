@@ -39,8 +39,8 @@ public class Product {
     @JoinColumn(name="product_id")
     private List<Wish> wishes;
 
-    @OneToMany
-    @JoinColumn(name="product_id")
+    @OneToMany(mappedBy = "product")
+    //@JoinColumn(name="product_id")
     private List<OrderProduct> orderProducts;
 
     @OneToMany

@@ -41,9 +41,10 @@ public class OrderController {
 
     @PostMapping("/buy")
     public String productBuy(@ModelAttribute Order order,
-                             @RequestParam(name="id") Long[] ids,
+                             @RequestParam(name="productId") Long[] ids,
                              @RequestParam(name="amount") int[] amounts,
                                      Principal principal,
+                                     Model model,
                                  HttpSession httpSession){
 
         String orderNumber = orderService.generateOrderNumber();
@@ -56,8 +57,10 @@ public class OrderController {
         }
 
         List<Product> products = productService.findMyProductList(orderProduct);
-        orderService.saveOrder(order);
-        orderProductService.saveOrderProducts(products);
+        Order saveOrder = orderService.saveOrder(order);
+        orderProductService.saveOrderProducts(products,saveOrder);
+
+        model.addAttribute("orderNo",orderNumber);
         return "order/complete";
     }
 

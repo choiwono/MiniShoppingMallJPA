@@ -8,6 +8,8 @@ import my.examples.shoppingmall.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -19,18 +21,17 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
 
-    @Transactional
+    @Transactional(readOnly=true)
     public String generateOrderNumber() {
         String result = null;
         Date from = new Date();
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String to = transFormat.format(from);
-        result = to+UUID.randomUUID().toString();
-
+        result = "S"+to+UUID.randomUUID().toString();
         return result;
     }
 
-    @Transactional
+    @Transactional(readOnly = false)
     public Order saveOrder(Order order) {
         orderRepository.save(order);
         return order;
