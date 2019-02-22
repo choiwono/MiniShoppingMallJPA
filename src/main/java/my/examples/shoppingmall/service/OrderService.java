@@ -3,6 +3,7 @@ package my.examples.shoppingmall.service;
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.dto.RecordItem;
 import my.examples.shoppingmall.repository.OrderRepository;
 import my.examples.shoppingmall.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,11 @@ public class OrderService {
     public Order saveOrder(Order order) {
         orderRepository.save(order);
         return order;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Order> findRecordByGuest(RecordItem recordItem) {
+        return orderRepository.findRecordByGuest(recordItem.getUserName(),
+                                                 recordItem.getEmail(),recordItem.getPhone());
     }
 }

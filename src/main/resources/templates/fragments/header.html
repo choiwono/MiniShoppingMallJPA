@@ -11,6 +11,9 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <div class="btn-group dropdown-menu-sm-left">
+                            <a class="nav-link">
+                                <i class="fas fa-search"></i>
+                            </a>
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown">
                                 <i class="fas fa-user"></i>
                             </a>
@@ -18,9 +21,12 @@
                                 <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:onclick="'javascript:showModal('+'1'+')'" th:text="로그인"></a>
                                 <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:onclick="'javascript:showModal('+'2'+')'" th:text="회원가입"></a>
                                 <a class="dropdown-item" th:href="@{/cart/list}" th:text="장바구니"></a>
-                                <a class="dropdown-item" th:href="@{/order/record}" th:text="주문내역확인"></a>
+                                <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:onclick="'javascript:showModal('+'3'+')'">비회원 주문내역</a>
                                 <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}" th:text="로그아웃"></a>
                             </div>
+                            <a class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
                         </div>
                         <div class="modal fade" id="layerPopup" tabindex="-1" role="dialog" aria-labelledby="layerPopupCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -126,6 +132,30 @@
                                             <div class="form-group ">
                                                 <button type="submit" class="btn btn-primary btn-lg btn-block login-button">등록</button>
                                             </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="recordModalLabel">비회원 주문내역확인</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-group" method="post" action="/order/record">
+                                            <input type="text" class="form-control" name="username" placeholder="이름을 입력해주세요" required>
+                                            <input type="text" class="form-control" name="email" placeholder="이메일을 입력해주세요" required>
+                                            <input type="text" class="form-control" name="phone" placeholder="휴대폰번호를 입력해주세요" required>
+                                            <input
+                                                    type="hidden"
+                                                    th:name="${_csrf.parameterName}"
+                                                    th:value="${_csrf.token}" />
+                                            <button class="btn btn-lg btn-warning btn-block" type="submit">주문확인</button>
                                         </form>
                                     </div>
                                 </div>
