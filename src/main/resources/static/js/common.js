@@ -43,6 +43,8 @@ function showModal(option){
         $('#exampleModal').modal('show')
     } else if(option == 2) {
         $('#joinModal').modal('show');
+    } else if(option == 3){
+        $('#recordModal').modal('show');
     }
 }
 

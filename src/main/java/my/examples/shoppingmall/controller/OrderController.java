@@ -3,6 +3,7 @@ package my.examples.shoppingmall.controller;
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.dto.RecordItem;
 import my.examples.shoppingmall.service.OrderProductService;
 import my.examples.shoppingmall.service.OrderService;
 import my.examples.shoppingmall.service.ProductService;
@@ -70,8 +71,18 @@ public class OrderController {
         return "order/complete";
     }
 
-    @GetMapping("/record")
-    public String orderRecord(){
+    @PostMapping("/record")
+    public String orderRecord(
+            @RequestParam(name="username") String userName,
+            @RequestParam(name="email") String email,
+            @RequestParam(name="phone") String phone,
+            Model model){
+        RecordItem recordItem = new RecordItem();
+        recordItem.setUserName(userName);
+        recordItem.setEmail(email);
+        recordItem.setPhone(phone);
+        List<Order> orders = orderService.findRecordByGuest(recordItem);
+        model.addAttribute("orders",orders);
         return "order/record";
     }
 
