@@ -2,8 +2,13 @@ package my.examples.shoppingmall.controller;
 
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Account;
+import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.domain.Wish;
 import my.examples.shoppingmall.dto.Joinform;
 import my.examples.shoppingmall.service.AccountService;
+import my.examples.shoppingmall.service.ProductService;
+import my.examples.shoppingmall.service.WishService;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,12 +20,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final AccountService accountService;
+    private final WishService wishService;
+    private final ProductService productService;
 
     @GetMapping("/login")
     public String login(
@@ -58,4 +68,18 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/wishlist")
+    public String wishList(Principal principal,
+                           Model model){
+        if(principal != null) {
+            Account account = accountService.findAccountByEmail(principal.getName());
+            List<Wish> wishList = wishService.findMyWishList(account.getId());
+            List<Product> products = new ArrayList<>();
+            for(Wish w : wishList){
+                products.add(productService.findByIdProduct(w.getProduct().getId()));
+            }
+            model.addAttribute("products",products);
+        }
+        return "users/wishlist";
+    }
 }

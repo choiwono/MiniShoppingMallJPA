@@ -43,8 +43,11 @@
                   <a th:href="@{/product/view(id=${product.id})}" th:text="${product.name}"></a>
                 </p>
                 <p class="html-editor-bold m-1" th:text="${#numbers.formatInteger(product.price,3,'COMMA')}"></p>
-                <a class="m-1" th:onclick="'javascript:addCart(' + ${product.id} + ','+'1'+')'">
-                  <span><i class="fas fa-shopping-cart"></i></span>
+                <a class="ml-1 cursor-pointer" th:onclick="'javascript:addWishItem(' + ${product.id} + ')'">
+                  <span class="op-50"><i class="fas fa-heart"></i></span>
+                </a>
+                <a class="cursor-pointer" th:onclick="'javascript:addCart(' + ${product.id} + ','+'1'+')'">
+                  <span class="op-50"><i class="fas fa-shopping-cart"></i></span>
                 </a>
                 <!--<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
               </div>

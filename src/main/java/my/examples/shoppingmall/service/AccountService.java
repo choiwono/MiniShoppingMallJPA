@@ -32,4 +32,8 @@ public class AccountService {
     public void deleteAccount(Long id){
         accountRepository.deleteById(id);
     }
+
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findMyAccount(email);
+    }
 }

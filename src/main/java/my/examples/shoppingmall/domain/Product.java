@@ -35,8 +35,7 @@ public class Product {
     @JoinColumn(name="product_id")
     private List<Review> reviewList;
 
-    @OneToMany
-    @JoinColumn(name="product_id")
+    @OneToMany(mappedBy = "product")
     private List<Wish> wishes;
 
     @OneToMany(mappedBy = "product")

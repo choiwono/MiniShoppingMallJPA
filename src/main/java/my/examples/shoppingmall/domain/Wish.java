@@ -2,6 +2,7 @@ package my.examples.shoppingmall.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,13 +17,13 @@ public class Wish {
     private long id;
     private Date regDate;
 
-//    @ManyToOne(targetEntity = Account.class)
-//    @JoinColumn(name="account_id")
-//    private Account account;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="account_id")
+    private Account account;
 
-//    @ManyToOne(targetEntity = Product.class)
-//    @JoinColumn(name="product_id")
-//    private Product product;
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "proudct_id")
+    private Product product;
 
     public Wish() {
         regDate = new Date();

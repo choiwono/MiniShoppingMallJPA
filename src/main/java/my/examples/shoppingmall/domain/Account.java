@@ -40,8 +40,7 @@ public class Account {
     @JoinColumn(name="account_id")
     private List<AccountAddress> accountAddresses;
 
-    @OneToMany
-    @JoinColumn(name="account_id")
+    @OneToMany(mappedBy = "account")
     private List<Wish> wishList;
 
     @OneToMany

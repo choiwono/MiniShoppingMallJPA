@@ -86,10 +86,10 @@ public class OrderController {
         return "order/record";
     }
 
-    @PostMapping("/directorder")
+    @GetMapping("/directorder")
     public String directOrder(
             @RequestParam(name="id") Long id,
-                                     int amount,
+            @RequestParam(name="amount") int amount,
                                      Model model){
         Product product = productService.findByIdProduct(id);
         product.setAmount(amount);

@@ -26,7 +26,8 @@ function addCart(id) {
         },
         error : function (data) {
             alert("통신실패. 다시 시도해주시길 바랍니다.");
-        }
+        },
+        timeout: 3000
     });
 }
 
@@ -99,7 +100,30 @@ function changeProductCart(id){
         },
         error : function (data) {
             alert("통신실패. 다시 시도해주시길 바랍니다.");
-        }
+        },
+        timeout: 3000
+    });
+}
+
+function addWishItem(id){
+    //var jsonData = JSON.stringify( JSONObject );
+    $.ajax({
+        url : '/api/account/wishItem/'+id,
+        method : 'post',
+        dataType: "text",
+        success : function (data) {
+            if(data == "success"){
+                alert("찜목록에 추가되셨습니다");
+            } else if(data == "duplicate"){
+                alert("해당 상품이 이미 찜목록에 있습니다");
+            } else {
+                alert("회원가입을 하셔야 찜목록을 추가하실수 있습니다");
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        },
+        timeout: 3000
     });
 }
 
