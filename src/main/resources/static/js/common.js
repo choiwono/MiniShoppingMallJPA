@@ -26,7 +26,8 @@ function addCart(id) {
         },
         error : function (data) {
             alert("통신실패. 다시 시도해주시길 바랍니다.");
-        }
+        },
+        timeout: 3000
     });
 }
 
@@ -99,7 +100,32 @@ function changeProductCart(id){
         },
         error : function (data) {
             alert("통신실패. 다시 시도해주시길 바랍니다.");
-        }
+        },
+        timeout: 3000
+    });
+}
+
+function addWishItem(id){
+    var JSONObject= {
+        "productId" : id,
+        "quantity" : 1
+    };
+    var jsonData = JSON.stringify( JSONObject );
+    $.ajax({
+        url : '/api/account/addWishItem',
+        method : 'post',
+        data : jsonData,
+        dataType: "text",
+        contentType: "application/json",
+        success : function (data) {
+            if(data == "ok"){
+                alert("테스트중입니다.");
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        },
+        timeout: 3000
     });
 }
 

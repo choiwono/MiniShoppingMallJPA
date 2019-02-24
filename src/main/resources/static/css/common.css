@@ -6,6 +6,10 @@ header {
     height:56px;
 }
 
+.dropdown-toggle::after {
+    display:none;
+}
+
 .modal-backdrop{
     z-index:0;
 }

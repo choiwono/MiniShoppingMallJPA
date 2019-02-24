@@ -58,4 +58,8 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/wishlist")
+    public String wishList(){
+        return "users/wishlist";
+    }
 }

@@ -21,7 +21,7 @@ public class MainController {
     private final ProductService productService;
     private final FileImageService fileImageService;
 
-    @GetMapping("/main")
+    @GetMapping(value="/main")
     public String main(Model model){
 
         List<Product> products = productService.findAllProduct();
