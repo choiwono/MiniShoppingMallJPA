@@ -22,6 +22,14 @@ header {
     cursor: pointer;
 }
 
+.op-50 {
+    opacity:0.5;
+}
+
+.icon-color-yellow {
+    color: gold;
+}
+
 li {
     list-style: none;
 }

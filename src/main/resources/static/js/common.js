@@ -106,20 +106,18 @@ function changeProductCart(id){
 }
 
 function addWishItem(id){
-    var JSONObject= {
-        "productId" : id,
-        "quantity" : 1
-    };
-    var jsonData = JSON.stringify( JSONObject );
+    //var jsonData = JSON.stringify( JSONObject );
     $.ajax({
-        url : '/api/account/addWishItem',
+        url : '/api/account/wishItem/'+id,
         method : 'post',
-        data : jsonData,
         dataType: "text",
-        contentType: "application/json",
         success : function (data) {
-            if(data == "ok"){
-                alert("테스트중입니다.");
+            if(data == "success"){
+                alert("찜목록에 추가되셨습니다");
+            } else if(data == "duplicate"){
+                alert("해당 상품이 이미 찜목록에 있습니다");
+            } else {
+                alert("회원가입을 하셔야 찜목록을 추가하실수 있습니다");
             }
         },
         error : function (data) {
