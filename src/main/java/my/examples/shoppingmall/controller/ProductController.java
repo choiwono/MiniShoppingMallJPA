@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,5 +32,17 @@ public class ProductController {
         Product product = productRepository.findProductById(id);
         model.addAttribute("product",product);
         return "product/view";
+    }
+
+    @GetMapping("/list")
+    public String list(
+            @RequestParam(name="search",required = false, defaultValue = "") String searchStr,
+            @RequestParam(name="page",required = false, defaultValue = "1") int page,
+            Model model){
+        int limit = 5;
+        int start = page * limit - limit;
+        List<Product> products = productRepository.getProducts(start,limit,searchStr);
+        model.addAttribute("products",products);
+        return "product/list";
     }
 }

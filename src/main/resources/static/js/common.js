@@ -105,6 +105,22 @@ function changeProductCart(id){
     });
 }
 
+function showSearch(){
+    var search = $("#search").hasClass('d-none');
+    var value = $("#search").val();
+    console.log(search);
+    console.log(value);
+    if(search){
+        $("#search").addClass("d-block");
+        $("#search").removeClass("d-none");
+    } else if(value == null || value == "" || value.length == 0){
+        $("#search").addClass("d-none");
+        $("#search").removeClass("d-block");
+    } else {
+        $("#search-btn").attr("type","submit");
+    }
+}
+
 function addWishItem(id){
     //var jsonData = JSON.stringify( JSONObject );
     $.ajax({
