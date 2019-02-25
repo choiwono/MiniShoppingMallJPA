@@ -18,6 +18,11 @@ header {
     margin:15px 0px 15px 0px;
 }
 
+#search {
+    height:32px;
+    width:180px;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
