@@ -64,6 +64,29 @@ values(9,100,'재밌는이모티콘4',2300,0.0,NOW(),2);
 insert into product (id,amount,name,price,rating,reg_date,category_id)
 values(10,100,'재밌는이모티콘5',2300,0.0,NOW(),2);
 
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(11,100,'멋있는이모티콘1',2300,0.0,NOW(),3);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(12,100,'멋있는이모티콘2',2300,0.0,NOW(),3);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(13,100,'멋있는이모티콘3',2300,0.0,NOW(),3);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(14,100,'멋있는이모티콘4',2300,0.0,NOW(),3);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(15,100,'멋있는이모티콘5',2300,0.0,NOW(),3);
+
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(16,100,'일러스트이모티콘1',2300,0.0,NOW(),4);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(17,100,'일러스트이모티콘2',2300,0.0,NOW(),4);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(18,100,'일러스트이모티콘3',2300,0.0,NOW(),4);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(19,100,'일러스트이모티콘4',2300,0.0,NOW(),4);
+insert into product (id,amount,name,price,rating,reg_date,category_id)
+values(20,100,'일러스트이모티콘5',2300,0.0,NOW(),4);
+
+
 insert into review (id,content,rating,reg_date,title,product_id,account_id)
 values(1,'별로네요 칫',4.5,NOW(),'정말 좋아요 ^^',1,1);
 insert into review (id,content,rating,reg_date,title,product_id,account_id)
