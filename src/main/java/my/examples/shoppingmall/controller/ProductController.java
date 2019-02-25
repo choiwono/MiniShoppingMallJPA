@@ -36,13 +36,14 @@ public class ProductController {
 
     @GetMapping("/list")
     public String list(
-            @RequestParam(name="search",required = false, defaultValue = "") String searchStr,
+            @RequestParam(name="searchStr",required = false, defaultValue = "") String searchStr,
             @RequestParam(name="page",required = false, defaultValue = "1") int page,
             Model model){
-        int limit = 5;
+        int limit = 10;
         int start = page * limit - limit;
         List<Product> products = productRepository.getProducts(start,limit,searchStr);
         model.addAttribute("products",products);
+        model.addAttribute("searchStr",searchStr);
         return "product/list";
     }
 }

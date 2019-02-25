@@ -37,7 +37,6 @@ public class ProductService {
         return list;
     }
 
-
     public int findTotalPrice(List<Product> products) {
         int result = 0;
         for(Product pr : products){
