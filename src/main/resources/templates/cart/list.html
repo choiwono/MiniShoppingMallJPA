@@ -46,7 +46,7 @@
                 <h3 th:text="장바구니목록이비었습니다"></h3>
             </div>
         </div>
-        <nav class="fixed-bottom navbar navbar-ligh justify-content-end" style="background-color: #fff;">
+        <nav th:if="${not #lists.isEmpty(products)}" class="fixed-bottom border-top navbar navbar-ligh justify-content-end" style="background-color: #fff;">
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/main}" th:text="쇼핑계속하기"></a>

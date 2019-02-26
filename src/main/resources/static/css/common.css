@@ -23,6 +23,18 @@ header {
     width:180px;
 }
 
+input.error {
+    border: 2px solid crimson;
+    border-radius:0.25rem;
+}
+
+label.error {
+    margin-top:10px;
+    width:100%;
+    color:crimson;
+    font-weight:700;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
