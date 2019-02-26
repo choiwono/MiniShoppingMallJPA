@@ -177,3 +177,31 @@ function openZipCode() {
     }).open();
 }
 
+function checkEmail(){
+    var id = $("#email").val();
+    if(id.length == 0 || id == null){
+        alert("이메일을 2글자 이상 입력해주세요")
+        return;
+    }
+    $.ajax({
+        url : '/api/account/checkEmail/'+id,
+        method : 'post',
+        dataType: "text",
+        success : function (data) {
+            if(data == "success"){
+                $("#check-id").attr('class','btn btn-success');
+                alert("중복되는 아이디가 없습니다");
+            } else if(data == "duplicate"){
+                $("#check-id").attr('class','btn btn-danger');
+                alert("중복되는 아이디가 있습니다");
+            } else {
+
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        },
+        timeout: 3000
+    });
+}
+

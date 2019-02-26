@@ -107,7 +107,7 @@
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" name="email" id="email"  placeholder="이메일.."/>
                                                     </div>
-                                                    <button type="button" id="check-id" style="margin-top:7.5px;" class="btn btn-primary">중복체크</button>
+                                                    <button type="button" th:onclick="'javascript:checkEmail()'" id="check-id" style="margin-top:7.5px;" class="btn btn-primary">중복체크</button>
                                                 </div>
                                             </div>
 
@@ -191,12 +191,16 @@
                     highlight: function (element, errorClass, validClass) {
                         $(element.form).find("input[id=" + element.id + "]")
                             .addClass("error");
+                        $(element.form).find("input[id=" + element.id + "]")
+                            .removeClass("success");
                         $(element.form).find("label[id=" + element.id + "-error"+"]")
                             .remove();
                     },
                     unhighlight: function (element, errorClass, validClass) {
                         $(element.form).find("input[id=" + element.id + "]")
                             .removeClass("error");
+                        $(element.form).find("input[id=" + element.id + "]")
+                            .addClass("success");
                     },
                     success: function () {
 
