@@ -29,10 +29,7 @@ input.error {
 }
 
 label.error {
-    margin-top:10px;
-    width:100%;
-    color:crimson;
-    font-weight:700;
+    display:none !important;
 }
 
 .cursor-pointer {
