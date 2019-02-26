@@ -17,7 +17,6 @@ function addCart(id) {
         success : function (data) {
             if(data == "success"){
                 alert("장바구니에 추가되었습니다.");
-                $('#layerPopup').modal('show')
             } else if(data == "duplicate"){
                 alert("이미 중복된 상품이 있습니다.");
             } else if(data == "fail"){
@@ -133,7 +132,7 @@ function addWishItem(id){
             } else if(data == "duplicate"){
                 alert("해당 상품이 이미 찜목록에 있습니다");
             } else {
-                alert("회원가입을 하셔야 찜목록을 추가하실수 있습니다");
+                alert("로그인을 하셔야 찜목록을 추가하실수 있습니다");
             }
         },
         error : function (data) {
@@ -177,3 +176,32 @@ function openZipCode() {
         }
     }).open();
 }
+
+function checkEmail(){
+    var id = $("#email").val();
+    if(id.length == 0 || id == null){
+        alert("이메일을 2글자 이상 입력해주세요")
+        return;
+    }
+    $.ajax({
+        url : '/api/account/checkEmail/'+id,
+        method : 'post',
+        dataType: "text",
+        success : function (data) {
+            if(data == "success"){
+                $("#check-id").attr('class','btn btn-success');
+                alert("중복되는 아이디가 없습니다");
+            } else if(data == "duplicate"){
+                $("#check-id").attr('class','btn btn-danger');
+                alert("중복되는 아이디가 있습니다");
+            } else {
+
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        },
+        timeout: 3000
+    });
+}
+

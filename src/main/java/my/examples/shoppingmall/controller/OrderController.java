@@ -73,9 +73,9 @@ public class OrderController {
 
     @PostMapping("/record")
     public String orderRecord(
-            @RequestParam(name="username") String userName,
-            @RequestParam(name="email") String email,
-            @RequestParam(name="phone") String phone,
+            @RequestParam(name="recordUsername") String userName,
+            @RequestParam(name="recordEmail") String email,
+            @RequestParam(name="recordPhone") String phone,
             Model model){
         RecordItem recordItem = new RecordItem();
         recordItem.setUserName(userName);

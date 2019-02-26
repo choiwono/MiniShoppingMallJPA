@@ -23,6 +23,20 @@ header {
     width:180px;
 }
 
+input.error {
+    border: 2px solid crimson;
+    border-radius:0.25rem;
+}
+
+input.success {
+    border: 2px solid dodgerblue;
+    border-radius:0.25rem;
+}
+
+label.error {
+    display:none !important;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }

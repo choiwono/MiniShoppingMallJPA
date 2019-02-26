@@ -16,14 +16,14 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/account/wishItem")
+@RequestMapping("/api/account")
 @RequiredArgsConstructor
 public class AccountApiController {
     private final AccountService accountService;
     private final WishService wishService;
     private final ProductService productService;
 
-    @PostMapping(value="/{id}")
+    @PostMapping(value="/wishItem/{id}")
     public String addWishItem(@PathVariable(value="id") Long id, Principal principal){
         String result = "fail";
         if(principal != null){
@@ -36,6 +36,18 @@ public class AccountApiController {
                 wishService.saveWishItem(account,product);
                 result = "success";
             }
+        }
+        return result;
+    }
+
+    @PostMapping(value="/checkEmail/{id}")
+    public String checkEmail(@PathVariable(value="id") String email){
+        String result = "fail";
+        Account account = accountService.findAccountByEmail(email);
+        if(account == null){
+            result = "success";
+        } else {
+            result = "duplicate";
         }
         return result;
     }
