@@ -7,9 +7,9 @@
 <th:block layout:fragment="script">
 </th:block>
 <div layout:fragment="content">
-    <div class="jumbotron jumbotron-fluid bg-light">
-        <div class="container">
-            <h3 class="display-4">위시리스트</h3>
+    <div class="jumbotron jumbotron-fluid bg-light p-3 mt-1">
+        <div class="container text-center">
+            <h3 th:text="위시리스트"></h3>
             <p class="lead">My WishList</p>
         </div>
     </div>
@@ -32,8 +32,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12" th:if="${#lists.isEmpty(products)}">
-                <h3>총 0건의 상품이 조회되었습니다</h3>
+            <div th:if="${#lists.isEmpty(products)}" class="d-flex justify-content-center w-100 p-3" style="min-height:200px;">
+                <h5 class="mt-5">총 0건의 상품이 검색되었습니다</h5>
             </div>
         </div>
     </div>
