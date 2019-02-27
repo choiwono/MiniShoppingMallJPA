@@ -27,7 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class UserController {
+public class AccountController {
     private final AccountService accountService;
     private final WishService wishService;
     private final ProductService productService;
@@ -35,9 +35,9 @@ public class UserController {
     @GetMapping("/login")
     public String login(
             @RequestParam(name="fail",
-            required=false,defaultValue="false") String errorFlag,
+                    required=false,defaultValue="false") String errorFlag,
             Model model){
-            model.addAttribute("errorFlag",errorFlag);
+        model.addAttribute("errorFlag",errorFlag);
         return "users/login";
     }
 
@@ -47,9 +47,9 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String joinform(@Valid Joinform joinform, BindingResult bindingResult){
+    public String joinform(@Valid Joinform joinform, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            throw new IllegalArgumentException(bindingResult.toString());
+            return "/users/join";
         }
 
         if(!joinform.getPasswd().equals(joinform.getPasswd2())){
@@ -62,10 +62,9 @@ public class UserController {
         account.setNickName(joinform.getNickname());
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         account.setPasswd(passwordEncoder.encode(joinform.getPasswd()));
+        accountService.join(account);
 
-        Account result = accountService.join(account);
-
-        return "redirect:/";
+        return "/users/join";
     }
 
     @GetMapping("/wishlist")

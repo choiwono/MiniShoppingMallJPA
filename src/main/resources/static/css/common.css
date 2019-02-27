@@ -53,6 +53,11 @@ li {
     list-style: none;
 }
 
+.errorFlag {
+    color:crimson;
+    font-weight:700;
+}
+
 #popupDiv {  /* 팝업창 css */
     top : 0px;
     position: absolute;

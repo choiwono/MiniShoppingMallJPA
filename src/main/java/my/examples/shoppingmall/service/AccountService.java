@@ -5,7 +5,6 @@ import my.examples.shoppingmall.domain.Account;
 import my.examples.shoppingmall.domain.Role;
 import my.examples.shoppingmall.repository.AccountRepository;
 import my.examples.shoppingmall.repository.RoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

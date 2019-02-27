@@ -1,13 +1,10 @@
 package my.examples.shoppingmall.controller;
 
 import lombok.RequiredArgsConstructor;
-import my.examples.shoppingmall.domain.Account;
-import my.examples.shoppingmall.domain.FileImage;
 import my.examples.shoppingmall.domain.Product;
 import my.examples.shoppingmall.service.AccountService;
 import my.examples.shoppingmall.service.FileImageService;
 import my.examples.shoppingmall.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -38,6 +38,7 @@ function moveUrl(url){
     }
 }
 
+/*
 function showModal(option){
     if(option == 1) {
         $('#exampleModal').modal('show')
@@ -47,6 +48,7 @@ function showModal(option){
         $('#recordModal').modal('show');
     }
 }
+*/
 
 function amountModify(id, option){
     var amount = $('#'+id).val();

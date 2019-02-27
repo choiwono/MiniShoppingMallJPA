@@ -71,6 +71,11 @@ public class OrderController {
         return "order/complete";
     }
 
+    @GetMapping("/record")
+    public String getRecord(){
+        return "order/recordwriteform";
+    }
+
     @PostMapping("/record")
     public String orderRecord(
             @RequestParam(name="recordUsername") String userName,
