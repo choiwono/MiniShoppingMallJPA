@@ -8,16 +8,12 @@ import my.examples.shoppingmall.dto.Joinform;
 import my.examples.shoppingmall.service.AccountService;
 import my.examples.shoppingmall.service.ProductService;
 import my.examples.shoppingmall.service.WishService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -47,13 +43,15 @@ public class AccountController {
     }
 
     @PostMapping("/join")
-    public String joinform(@Valid Joinform joinform, BindingResult bindingResult, Model model){
+    public String joinform(@Valid Joinform joinform,
+                           BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            return "/users/join";
+            return "users/joinfalse";
         }
 
         if(!joinform.getPasswd().equals(joinform.getPasswd2())){
-            throw new IllegalArgumentException("암호와 암호확인이 다릅니다.");
+            model.addAttribute("notEqualPassword","비밀번호가 서로 일치하지않습니다.");
+            return "users/joinfalse";
         }
 
         Account account = new Account();
@@ -62,8 +60,12 @@ public class AccountController {
         account.setNickName(joinform.getNickname());
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         account.setPasswd(passwordEncoder.encode(joinform.getPasswd()));
-        accountService.join(account);
-
+        Account result = accountService.join(account);
+        if(result != null){
+            model.addAttribute("status","success");
+        } else {
+            model.addAttribute("status","fail");
+        }
         return "/users/join";
     }
 
