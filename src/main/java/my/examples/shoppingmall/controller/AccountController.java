@@ -54,6 +54,12 @@ public class AccountController {
             return "users/joinfalse";
         }
 
+        Account emailCheck = accountService.findAccountByEmail(joinform.getEmail());
+        if(emailCheck != null){
+            model.addAttribute("duplicateEmail","중복된 이메일이 존재합니다.");
+            return "users/joinfalse";
+        }
+
         Account account = new Account();
         account.setEmail(joinform.getEmail());
         account.setName(joinform.getName());
@@ -61,12 +67,7 @@ public class AccountController {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         account.setPasswd(passwordEncoder.encode(joinform.getPasswd()));
         Account result = accountService.join(account);
-        if(result != null){
-            model.addAttribute("status","success");
-        } else {
-            model.addAttribute("status","fail");
-        }
-        return "/users/join";
+        return "/users/welcome";
     }
 
     @GetMapping("/wishlist")

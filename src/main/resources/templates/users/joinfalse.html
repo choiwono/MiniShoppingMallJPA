@@ -46,6 +46,7 @@
                                     <input type="text" class="form-control mt-1" name="email" id="email"  placeholder="이메일.."/>
                                 </div>
                                 <p class="mt-2 errorFlag" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                                <p class="mt-2 errorFlag" th:if="${not #strings.isEmpty(duplicateEmail)}" th:text="${duplicateEmail}"></p>
                                 <button type="button" th:onclick="'javascript:checkEmail()'" id="check-id" style="margin-top:7.5px;" class="btn btn-primary">중복체크</button>
                             </div>
                         </div>
@@ -55,6 +56,7 @@
                                     <input type="password" class="form-control mt-1" name="passwd" id="passwd"  placeholder="비밀번호"/>
                                 </div>
                                 <p class="mt-2 errorFlag" th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}"></p>
+                                <p class="mt-2 errorFlag" th:if="${not #strings.isEmpty(notEqualPassword)}" th:text="${notEqualPassword}"></p>
                             </div>
                         </div>
                         <div class="form-group">
