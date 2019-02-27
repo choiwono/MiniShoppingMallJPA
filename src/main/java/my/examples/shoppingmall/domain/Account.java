@@ -1,6 +1,7 @@
 package my.examples.shoppingmall.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -11,7 +12,6 @@ import java.util.*;
 @Table(name="account")
 @Getter
 @Setter
-@ToString
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,7 @@ public class Account {
     private String nickName;
     private String email;
     private String passwd;
+
     @Column(name="reg_date")
     private Date regDate;
 
