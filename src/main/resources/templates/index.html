@@ -37,7 +37,7 @@
         <div class="row">
           <div th:each="product: ${products}" class="col-lg-3 col-md-6 mb-4">
             <div class="card h-100 border-0">
-              <a href="#"><img class="card-img-top rounded" src="http://placehold.it/700x400" alt=""></a>
+              <a href="#"><img th:if="${#arrays.length(product.fileImages) > 0}" class="card-img-top rounded" th:src="'/product/images/' + ${product.fileImages[0].id}" alt=""></a>
               <div class="card-body">
                 <p class="card-title m-1">
                   <a th:href="@{/product/view(id=${product.id})}" th:text="${product.name}"></a>
@@ -53,6 +53,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <a class="border pt-2 pb-2 pl-5 pr-5 mt-3 mb-5 rounded-pill" th:href="@{/product/list}" th:text="상품더보기"></a>
         </div>
     </div>
   </div>

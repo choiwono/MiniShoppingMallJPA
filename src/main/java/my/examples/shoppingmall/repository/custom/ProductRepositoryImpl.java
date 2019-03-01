@@ -30,6 +30,7 @@ public class ProductRepositoryImpl extends QuerydslRepositorySupport implements 
         QProduct qProduct = QProduct.product;
         JPQLQuery<Product> jpqlQuery = from(qProduct).innerJoin(qProduct.productCategory).fetchJoin()
                 .distinct();
+        jpqlQuery.where(qProduct.name.like("%"+searchStr+"%"));
         return jpqlQuery.fetchCount();
     }
 }
