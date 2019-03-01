@@ -37,6 +37,7 @@ public class ProductService {
             productItem.setAmount(cart.get(key));
             productItem.setPrice(product.getPrice());
             productItem.setName(product.getName());
+            productItem.setFiles(product.getFileImages());
             list.add(productItem);
         }
         return list;

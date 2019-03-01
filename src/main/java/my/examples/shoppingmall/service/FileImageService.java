@@ -13,6 +13,11 @@ import java.util.List;
 public class FileImageService {
     private final FileImageRepository fileImageRepository;
 
+    @Transactional(readOnly = true)
+    public FileImage getFileImage(Long id) {
+        return fileImageRepository.findById(id).get();
+    }
+
     @Transactional(readOnly=true)
     public List<FileImage> getFilesByProductId(Long id){
         return fileImageRepository.findByProductId(id);

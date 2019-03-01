@@ -6,6 +6,10 @@ header {
     height:56px;
 }
 
+a {
+    color:#0a0a0a !important;
+}
+
 .dropdown-toggle::after {
     display:none;
 }

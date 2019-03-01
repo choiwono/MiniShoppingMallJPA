@@ -15,9 +15,12 @@ public interface ProductRepository extends JpaRepository<Product,Long>, ProductR
     @Query("SELECT p FROM Product p WHERE p.productCategory.id=:id")
     Page<Product> findProductByCategory(@Param("id") Long id, Pageable pageable);
 
-    @Query("SELECT p FROM Product p inner join fetch p.productCategory " +
-           "Order by p.id desc")
+    @Query("SELECT distinct p FROM Product p inner join fetch p.productCategory "+
+           " inner join fetch p.fileImages"+
+           " Order by p.id desc")
     List<Product> getFindAll();
-    @Query("SELECT p FROM Product p WHERE p.id=:id")
+    @Query("SELECT p FROM Product p " +"inner join fetch p.productCategory"+
+           " inner join fetch p.fileImages"+
+           " WHERE p.id=:id")
     Product findProductById(@Param("id") Long id);
 }
