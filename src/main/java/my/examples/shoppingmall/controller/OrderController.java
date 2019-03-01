@@ -98,9 +98,9 @@ public class OrderController {
             @RequestParam(name="amount") int amount,
                                      Model model){
         Product product = productService.findByIdProduct(id);
-        product.setAmount(amount);
         int totalPrice = amount * product.getPrice();
         model.addAttribute("product",product);
+        model.addAttribute("amount",1);
         model.addAttribute("totalPrice",totalPrice);
         return "order/directorder";
     }
