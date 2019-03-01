@@ -42,8 +42,16 @@ public class ProductController {
         int limit = 10;
         int start = page * limit - limit;
         List<Product> products = productRepository.getProducts(start,limit,searchStr);
+        long totalCount = productRepository.getProductsCount(searchStr);
+        long totalPage = totalCount / 10;
+        if(totalCount % 10 > 0){
+            totalPage++;
+        }
+
         model.addAttribute("products",products);
         model.addAttribute("searchStr",searchStr);
+        model.addAttribute("page",page);
+        model.addAttribute("totalPage",totalPage);
         return "product/list";
     }
 }
