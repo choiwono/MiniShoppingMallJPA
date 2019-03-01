@@ -3,6 +3,7 @@ package my.examples.shoppingmall.controller;
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Product;
 import my.examples.shoppingmall.dto.CartItem;
+import my.examples.shoppingmall.dto.ProductItem;
 import my.examples.shoppingmall.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +29,12 @@ public class CartController {
             model.addAttribute("products",null);
         } else {
             Map<Long, Integer> cart = (Map) session.getAttribute("cart");
-            List<Product> products = productService.findMyProductList(cart);
+            List<ProductItem> products = productService.findMyProductList(cart);
             int totalPrice = productService.findTotalPrice(products);
-
+            if(totalPrice > 0){
+                model.addAttribute("totalPrice", totalPrice);
+            }
             model.addAttribute("products", products);
-            model.addAttribute("totalPrice", totalPrice);
         }
         return "cart/list";
     }

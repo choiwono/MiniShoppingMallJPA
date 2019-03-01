@@ -106,6 +106,40 @@ function changeProductCart(id){
     });
 }
 
+function deleteCartItem(id){
+    $.ajax({
+        url : '/api/cart/'+id,
+        method : 'delete',
+        success : function (data) {
+            if(data == "success"){
+                alert("삭제성공");
+                location.reload();
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        },
+        timeout: 3000
+    });
+}
+
+function deleteWishItem(id){
+    $.ajax({
+        url : '/api/account/wishItem/'+id,
+        method : 'delete',
+        success : function (data) {
+            if(data == "success"){
+                alert("삭제성공");
+                location.reload();
+            }
+        },
+        error : function (data) {
+            alert("통신실패. 다시 시도해주시길 바랍니다.");
+        },
+        timeout: 3000
+    });
+}
+
 function showSearch(){
     var search = $("#search").hasClass('d-none');
     var value = $("#search").val();

@@ -3,6 +3,7 @@ package my.examples.shoppingmall.service;
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.dto.ProductItem;
 import my.examples.shoppingmall.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,19 +28,23 @@ public class ProductService {
     }
 
     @Transactional
-    public List<Product> findMyProductList(Map<Long, Integer> cart) {
-        List<Product> list = new ArrayList<>();
+    public List<ProductItem> findMyProductList(Map<Long, Integer> cart) {
+        List<ProductItem> list = new ArrayList<>();
         for (Long key : cart.keySet()) {
-            Product products = productRepository.findProductById(key);
-            products.setAmount(cart.get(key));
-            list.add(products);
+            Product product = productRepository.findProductById(key);
+            ProductItem productItem = new ProductItem();
+            productItem.setId(product.getId());
+            productItem.setAmount(cart.get(key));
+            productItem.setPrice(product.getPrice());
+            productItem.setName(product.getName());
+            list.add(productItem);
         }
         return list;
     }
 
-    public int findTotalPrice(List<Product> products) {
+    public int findTotalPrice(List<ProductItem> products) {
         int result = 0;
-        for(Product pr : products){
+        for(ProductItem pr : products){
             result += (pr.getPrice() * pr.getAmount());
         }
         return result;

@@ -11,7 +11,6 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@EnableOAuth2Sso
 public class ShoppingmallApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
