@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.OrderProduct;
 import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.dto.ProductItem;
 import my.examples.shoppingmall.repository.OrderProductRepository;
 import my.examples.shoppingmall.repository.OrderRepository;
 import my.examples.shoppingmall.repository.ProductRepository;
@@ -21,8 +22,8 @@ public class OrderProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public void saveOrderProducts(List<Product> products, Order order) {
-        for(Product pr : products){
+    public void saveOrderProducts(List<ProductItem> products, Order order) {
+        for(ProductItem pr : products){
             OrderProduct orderProduct = new OrderProduct();
             Optional<Product> productOptional = productRepository.findById(pr.getId());
             orderProduct.setAmount(pr.getAmount());

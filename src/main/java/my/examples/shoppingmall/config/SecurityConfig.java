@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutSuccessUrl("/main")
             .permitAll().and()
             .authorizeRequests() // 인가에 대한 설정
-            .antMatchers("/api/cart").permitAll()
+            .antMatchers("/api/cart/**").permitAll()
             .antMatchers("/api/cart/change").permitAll()
             .antMatchers("/api/order").permitAll()
             .antMatchers("/api/order/change").permitAll()

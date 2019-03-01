@@ -3,6 +3,7 @@ package my.examples.shoppingmall.controller;
 import lombok.RequiredArgsConstructor;
 import my.examples.shoppingmall.domain.Order;
 import my.examples.shoppingmall.domain.Product;
+import my.examples.shoppingmall.dto.ProductItem;
 import my.examples.shoppingmall.dto.RecordItem;
 import my.examples.shoppingmall.service.OrderProductService;
 import my.examples.shoppingmall.service.OrderService;
@@ -31,7 +32,7 @@ public class OrderController {
                       Model model){
         if(session.getAttribute("cart") != null) {
             Map<Long, Integer> cart = (Map) session.getAttribute("cart");
-            List<Product> products = productService.findMyProductList(cart);
+            List<ProductItem> products = productService.findMyProductList(cart);
             int totalPrice = productService.findTotalPrice(products);
 
             model.addAttribute("products",products);
@@ -62,7 +63,7 @@ public class OrderController {
             orderProduct.put(ids[i],amounts[i]);
         }
 
-        List<Product> products = productService.findMyProductList(orderProduct);
+        List<ProductItem> products = productService.findMyProductList(orderProduct);
         Order saveOrder = orderService.saveOrder(order);
         orderProductService.saveOrderProducts(products,saveOrder);
         model.addAttribute("orderNo",orderNumber);

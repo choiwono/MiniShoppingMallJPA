@@ -40,6 +40,17 @@ public class AccountApiController {
         return result;
     }
 
+    @DeleteMapping(value="/wishItem/{id}")
+    public String deleteWishItem(@PathVariable(value="id") Long id, Principal principal){
+        String result = "fail";
+        if(principal != null){
+            Account account = accountService.findAccountByEmail(principal.getName());
+            wishService.deleteByAccountAndProduct(account.getId(),id);
+            result = "success";
+        }
+        return result;
+    }
+
     @PostMapping(value="/checkEmail/{id}")
     public String checkEmail(@PathVariable(value="id") String email){
         String result = "fail";

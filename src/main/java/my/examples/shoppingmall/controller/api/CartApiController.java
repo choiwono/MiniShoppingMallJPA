@@ -1,5 +1,6 @@
 package my.examples.shoppingmall.controller.api;
 
+import my.examples.shoppingmall.domain.Account;
 import my.examples.shoppingmall.dto.CartItem;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,19 @@ public class CartApiController {
         Map<Long, Integer> cart = (Map)session.getAttribute("cart");
         if(cart.containsKey(cartItem.getProductId())){
             cart.put(cartItem.getProductId(), cartItem.getQuantity());
+            session.setAttribute("cart",cart);
+            result = "success";
+        }
+        return result;
+    }
+
+    @DeleteMapping(value="/{id}")
+    public String deleteCartItem(@PathVariable(value="id") Long id,
+                                 HttpSession session){
+        String result = "fail";
+        Map<Long, Integer> cart = (Map)session.getAttribute("cart");
+        if(cart != null){
+            cart.remove(id);
             session.setAttribute("cart",cart);
             result = "success";
         }
