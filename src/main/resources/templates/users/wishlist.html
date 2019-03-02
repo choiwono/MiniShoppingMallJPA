@@ -21,7 +21,7 @@
                     <button type="button" th:onclick="'javascript:deleteWishItem(' + ${product.id} + ')'" class="close btn-delete" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <a th:href="@{/product/view(id=${product.id})}"><img class="card-img-top rounded" src="http://placehold.it/700x400" alt=""></a>
+                    <a th:href="@{/product/view(id=${product.id})}"><img class="card-img-top rounded" th:src="'/product/images/' + ${product.fileImages[0].id}" alt=""></a>
                     <div class="card-body p-2">
                         <p class="card-title m-2 d-flex justify-content-center">
                             <span th:text="${product.name}"></span>

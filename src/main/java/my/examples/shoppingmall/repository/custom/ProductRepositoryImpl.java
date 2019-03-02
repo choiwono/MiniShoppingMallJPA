@@ -17,6 +17,7 @@ public class ProductRepositoryImpl extends QuerydslRepositorySupport implements 
     public List<Product> getProducts(int start, int limit, String searchStr) {
         QProduct qProduct = QProduct.product;
         JPQLQuery<Product> jpqlQuery = from(qProduct).innerJoin(qProduct.productCategory).fetchJoin()
+                                       .innerJoin(qProduct.fileImages).fetchJoin()
                                        .distinct();
 
         jpqlQuery.where(qProduct.name.like("%"+searchStr+"%"));
@@ -29,6 +30,7 @@ public class ProductRepositoryImpl extends QuerydslRepositorySupport implements 
     public long getProductsCount(String searchStr) {
         QProduct qProduct = QProduct.product;
         JPQLQuery<Product> jpqlQuery = from(qProduct).innerJoin(qProduct.productCategory).fetchJoin()
+                .innerJoin(qProduct.fileImages).fetchJoin()
                 .distinct();
         jpqlQuery.where(qProduct.name.like("%"+searchStr+"%"));
         return jpqlQuery.fetchCount();

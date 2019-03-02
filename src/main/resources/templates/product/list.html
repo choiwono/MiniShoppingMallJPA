@@ -22,7 +22,7 @@
         <div class="row">
             <div th:each="product: ${products}" th:if="${not #lists.isEmpty(products)}" class="col-lg-3 col-md-6 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="#"><img class="card-img-top rounded" src="http://placehold.it/700x400" alt=""></a>
+                    <a href="#"><img class="card-img-top rounded" th:src="'/product/images/' + ${product.fileImages[0].id}" alt=""></a>
                     <div class="card-body p-2">
                         <p class="card-title m-2 d-flex justify-content-center">
                             <a th:href="@{/product/view(id=${product.id})}" th:text="${product.name}"></a>
