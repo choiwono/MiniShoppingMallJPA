@@ -93,3 +93,38 @@ insert into review (id,content,rating,reg_date,title,product_id,account_id)
 values(3,'별로네요 칫칫',4.0,NOW(),'정말 좋아요 ^^',1,1);
 insert into review (id,content,rating,reg_date,title,product_id,account_id)
 values(2,'별로네요 칫칫칫',5.0,NOW(),'정말 좋아요 ^^!!!',1,2);
+
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(1,'8809538000146_AW_00.jpg',104619,'image/jpeg',1,NOW(),'/tmp/2019/3/2/29131514-d1dc-4e10-b83a-714e71371a34',1);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(2,'8809538000146_AW_00.jpg',104619,'image/jpeg',1,NOW(),'/tmp/2019/3/2/29131514-d1dc-4e10-b83a-714e71371a34',2);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(3,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',3);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(4,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',4);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(5,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',5);
+
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(6,'8809538000146_AW_00.jpg',104619,'image/jpeg',1,NOW(),'/tmp/2019/3/2/29131514-d1dc-4e10-b83a-714e71371a34',6);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(7,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',7);
+
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(8,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',8);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(9,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',9);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(10,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',10);
+
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(11,'8809538000146_AW_00.jpg',104619,'image/jpeg',1,NOW(),'/tmp/2019/3/2/29131514-d1dc-4e10-b83a-714e71371a34',11);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(12,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',12);
+
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(13,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',13);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(14,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',14);
+insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
+values(15,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',15);
