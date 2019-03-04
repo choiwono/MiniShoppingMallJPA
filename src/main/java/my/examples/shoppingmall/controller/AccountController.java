@@ -1,13 +1,9 @@
 package my.examples.shoppingmall.controller;
 
 import lombok.RequiredArgsConstructor;
-import my.examples.shoppingmall.domain.Account;
-import my.examples.shoppingmall.domain.Product;
-import my.examples.shoppingmall.domain.Wish;
+import my.examples.shoppingmall.domain.*;
 import my.examples.shoppingmall.dto.Joinform;
-import my.examples.shoppingmall.service.AccountService;
-import my.examples.shoppingmall.service.ProductService;
-import my.examples.shoppingmall.service.WishService;
+import my.examples.shoppingmall.service.*;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -27,6 +23,7 @@ public class AccountController {
     private final AccountService accountService;
     private final WishService wishService;
     private final ProductService productService;
+    private final OrderProductService orderProductService;
 
     @GetMapping("/login")
     public String login(
@@ -83,5 +80,17 @@ public class AccountController {
             model.addAttribute("products",products);
         }
         return "users/wishlist";
+    }
+
+    @GetMapping(value="/myorders")
+    public String myOrders(Principal principal,
+                           Model model){
+        if(principal == null){
+            model.addAttribute("message","회원만 접근하실수 있습니다");
+        }
+
+        OrderProduct orderProduct = orderProductService.findUserOrderList(principal.getName());
+        model.addAttribute("orderProduct",orderProduct);
+        return "users/myorders";
     }
 }
