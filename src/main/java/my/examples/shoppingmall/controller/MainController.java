@@ -20,7 +20,6 @@ public class MainController {
 
     @GetMapping(value="/main")
     public String main(Model model){
-
         List<Product> products = productService.findAllProduct();
         model.addAttribute("products",products);
         return "index";

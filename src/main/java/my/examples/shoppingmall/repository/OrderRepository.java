@@ -13,4 +13,5 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
             "concat(o.email1,'@',o.email2)=:email and o.phone=:phone ORDER BY o.regDate DESC")
     List<Order> findRecordByGuest(@Param("userName") String userName,
                                   @Param("email") String email, @Param("phone") String phone);
+
 }
