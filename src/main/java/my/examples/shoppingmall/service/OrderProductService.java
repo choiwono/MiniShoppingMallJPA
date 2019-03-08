@@ -34,8 +34,4 @@ public class OrderProductService {
             orderProductRepository.save(orderProduct);
         }
     }
-
-    public OrderProduct findUserOrderList(String email) {
-        return orderProductRepository.findUserOrderList(email);
-    }
 }

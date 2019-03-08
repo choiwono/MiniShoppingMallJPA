@@ -128,3 +128,12 @@ insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file
 values(14,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',14);
 insert into file_image (id,file_name,length,mime_type,options,reg_date,save_file_name,product_id)
 values(15,'8809538000146_AW_00.jpg',101449,'image/jpeg',1,NOW(),'/tmp/2019/3/2/eba5dd12-b224-4537-8a73-45a8309f198d',15);
+
+insert into orders (id,addr1, addr2, email1, email2, message, order_no, order_status, payment, phone, receiver_name, receiver_phone, reg_date, total_price, user_auth, user_name, zip_code)
+values(1,'서울 노원구 상계동 720', '주공아파트 609동 806호', 'treasureb1220', 'gmail.com', '배송메시지를 남겨주셔요~~', 'S20190308213028a228e022-832c-4c35-965e-6e84062a3556', 0, 1, '01062923620', '최원오', '01062923620', NOW(), 4600, 1, '최원오', '1752');
+
+insert into order_product(id,amount,name,reg_date,total_price,order_id,proudct_id)
+values(1,1,'멋있는이모티콘3',NOW(),2300,1,13);
+
+insert into order_product(id,amount,name,reg_date,total_price,order_id,proudct_id)
+values(2,1,'멋있는이모티콘4',NOW(),2300,1,14);
