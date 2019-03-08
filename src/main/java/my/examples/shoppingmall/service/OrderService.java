@@ -44,4 +44,7 @@ public class OrderService {
                                                  recordItem.getEmail(),recordItem.getPhone());
     }
 
+    public List<Order> findMyOrderList(String email) {
+        return orderRepository.findMyOrderList(email);
+    }
 }

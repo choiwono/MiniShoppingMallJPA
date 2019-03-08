@@ -14,4 +14,8 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findRecordByGuest(@Param("userName") String userName,
                                   @Param("email") String email, @Param("phone") String phone);
 
+    @Query("SELECT o FROM Order o inner join fetch OrderProduct op" +
+           " inner join fetch Product p" +
+           " WHERE concat(o.email1,'@',o.email2)=:email")
+    List<Order> findMyOrderList(@Param("email") String email);
 }

@@ -23,7 +23,7 @@ public class AccountController {
     private final AccountService accountService;
     private final WishService wishService;
     private final ProductService productService;
-    private final OrderProductService orderProductService;
+    private final OrderService orderService;
 
     @GetMapping("/login")
     public String login(
@@ -89,8 +89,8 @@ public class AccountController {
             model.addAttribute("message","회원만 접근하실수 있습니다");
         }
 
-        OrderProduct orderProduct = orderProductService.findUserOrderList(principal.getName());
-        model.addAttribute("orderProduct",orderProduct);
+        List<Order> orders = orderService.findMyOrderList(principal.getName());
+        model.addAttribute("orders",orders);
         return "users/myorders";
     }
 }
