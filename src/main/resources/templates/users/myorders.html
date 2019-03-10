@@ -20,8 +20,10 @@
                 <div class="card h-100 border-0">
                     <div class="card-body p-2">
                         <p class="card-title m-2 d-flex justify-content-center">
-                            <span th:text="${order.regDate}"></span>
+                            <span th:text="${#dates.format(order.regDate,'yyyy-MM-dd')}"></span>
                         </p>
+                        <p class="d-flex justify-content-center m-2" th:text="${order.getOrderProductList().get(0).getName()}"></p>
+                        <p class="html-editor-bold d-flex justify-content-center m-2" th:text="${#numbers.formatInteger(order.totalPrice,3,'COMMA')}+'원'"></p>
                         <!--<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
                     </div>
                 </div>

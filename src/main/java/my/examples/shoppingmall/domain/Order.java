@@ -43,7 +43,8 @@ public class Order {
     @Column(name="reg_date")
     private Date regDate;
 
-    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "order")
+    @OneToMany(mappedBy = "order",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private List<OrderProduct> orderProductList;
 
     public Order() {
