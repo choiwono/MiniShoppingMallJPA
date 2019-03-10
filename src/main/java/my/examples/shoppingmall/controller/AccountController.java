@@ -91,6 +91,7 @@ public class AccountController {
 
         List<Order> orders = orderService.findMyOrderList(principal.getName());
         model.addAttribute("orders",orders);
+        System.out.println(principal.getName());
         return "users/myorders";
     }
 }
